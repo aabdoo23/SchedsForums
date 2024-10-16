@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Persistence", "SchedsForums.Persistence\SchedsForums.Persistence.csproj", "{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Interface", "SchedsForums.Interface\SchedsForums.Interface.csproj", "{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
