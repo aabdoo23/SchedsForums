@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\SchedsForums.Persistence\SchedsForums.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
