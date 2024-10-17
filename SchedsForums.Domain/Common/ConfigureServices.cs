@@ -4,8 +4,10 @@ namespace SchedsForums.Domain.Common
 {
     public static class ConfigureServices
     {
-        public static void AddServices(this IServiceCollection services)
+        public static IServiceCollection Configure(this IServiceCollection services)
         {
+
+            return services;
         }
     }
 }

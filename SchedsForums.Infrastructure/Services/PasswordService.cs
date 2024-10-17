@@ -1,6 +1,8 @@
-﻿namespace SchedsForums.Infrastructure.Services
+﻿using SchedsForums.Interface;
+
+namespace SchedsForums.Infrastructure.Services
 {
-    public static class PasswordService
+    public class PasswordService : IBaseService
     {
         public static string HashPassword(string password)
         {

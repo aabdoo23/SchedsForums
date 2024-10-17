@@ -1,3 +1,4 @@
+using SchedsForums.Persistence.Services;
 
 namespace SchedsForums.Api
 {
@@ -13,6 +14,9 @@ namespace SchedsForums.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            //dbcontext
+            builder.Services.AddPersistenceServices();
+
 
             var app = builder.Build();
 
@@ -26,7 +30,6 @@ namespace SchedsForums.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
