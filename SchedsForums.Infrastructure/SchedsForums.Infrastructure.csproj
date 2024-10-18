@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="SchedsForums.Domain">
+      <HintPath>..\SchedsForums.Domain\obj\Debug\net8.0\ref\SchedsForums.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="SchedsForums.Persistence">
       <HintPath>..\SchedsForums.Persistence\obj\Debug\net8.0\ref\SchedsForums.Persistence.dll</HintPath>
     </Reference>

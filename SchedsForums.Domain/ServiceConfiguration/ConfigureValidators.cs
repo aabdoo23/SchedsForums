@@ -1,9 +1,6 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using SchedsForums.Domain.Entities.Common;
-using SchedsForums.Domain.Validators;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace SchedsForums.Domain.Common
+namespace SchedsForums.Domain.ServiceConfiguration
 {
     public static class ConfigureValidators
     {

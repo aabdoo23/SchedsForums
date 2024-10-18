@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace SchedsForums.Domain.Common
+namespace SchedsForums.Domain.ServiceConfiguration
 {
     public static class ConfigureServices
     {
