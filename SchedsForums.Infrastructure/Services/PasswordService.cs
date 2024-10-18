@@ -1,15 +1,15 @@
-﻿using SchedsForums.Domain.Interfaces;
+﻿using SchedsForums.Infrastructure.Services.Interfaces;
 
 namespace SchedsForums.Infrastructure.Services
 {
-    public class PasswordService : IBaseService
+    public class PasswordService : IPasswordService
     {
-        public static string HashPassword(string password)
+        public string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
 
-        public static bool VerifyPassword(string password, string hash)
+        public bool VerifyPassword(string password, string hash)
         {
             return BCrypt.Net.BCrypt.Verify(password, hash);
         }

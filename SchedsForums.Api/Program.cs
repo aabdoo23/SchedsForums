@@ -1,3 +1,5 @@
+using SchedsForums.Application;
+using SchedsForums.Application.Commands.Students.Create;
 using SchedsForums.Infrastructure;
 using SchedsForums.Persistence.Services;
 
@@ -17,7 +19,9 @@ namespace SchedsForums.Api
 
             //dbcontext, repos and services registration
             builder.Services.AddPersistenceServices();
-            builder.Services.RegisterRepositories();
+            builder.Services.RegisterInfrastructureRepositories();
+            builder.Services.RegisterInfrastructureServices();
+            builder.Services.AddMediatRServices();
 
 
             var app = builder.Build();
