@@ -2,7 +2,7 @@
 using SchedsForums.Domain.Entities;
 using SchedsForums.Domain.Entities.Common;
 using SchedsForums.Domain.Entities.Users;
-namespace SchedsForums.Persistence.Contexts
+namespace SchedsForums.Infrastructure.Contexts
 {
     public class ForumsDbContext : DbContext
     {

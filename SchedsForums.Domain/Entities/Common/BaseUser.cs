@@ -1,30 +1,25 @@
-﻿using SchedsForums.Domain.Entities.Common;
-using SchedsForums.Infrastructure.Services;
-
-public abstract class BaseUser : BaseEntity
+﻿
+namespace SchedsForums.Domain.Entities.Common
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
-
-    private string _password;
-    public string Password => _password;
-
-    protected BaseUser(string name, string email, string password)
+    public abstract class BaseUser : BaseEntity
     {
-        Id = Guid.NewGuid().ToString();
-        Name = name;
-        Email = email;
-        SetPassword(password);
-        CreatedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
-    }
-    protected BaseUser()
-    {
-    }
+        public string Name { get; set; }
+        public string Email { get; set; }
 
-    public void SetPassword(string password)
-    {
-        _password = PasswordService.HashPassword(password);
-        UpdatedAt = DateTime.UtcNow;
+        public string Password { get; set; }
+
+        protected BaseUser(string name, string email, string password)
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = name;
+            Email = email;
+            Password = password;
+            CreatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
+        }
+        protected BaseUser()
+        {
+        }
+
     }
 }

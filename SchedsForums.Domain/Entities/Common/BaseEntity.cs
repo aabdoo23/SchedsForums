@@ -1,4 +1,5 @@
-﻿using SchedsForums.Interface;
+﻿
+using SchedsForums.Domain.Interfaces;
 
 namespace SchedsForums.Domain.Entities.Common
 {

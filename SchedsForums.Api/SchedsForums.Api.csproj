@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SchedsForums.Persistence\SchedsForums.Persistence.csproj" />
+    <ProjectReference Include="..\SchedsForums.Infrastructure\SchedsForums.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

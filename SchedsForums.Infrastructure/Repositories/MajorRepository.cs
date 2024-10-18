@@ -1,7 +1,7 @@
 ﻿using SchedsForums.Domain.Entities;
+using SchedsForums.Domain.Interfaces.Repositories;
+using SchedsForums.Infrastructure.Contexts;
 using SchedsForums.Infrastructure.Repositories.Common;
-using SchedsForums.Interface.Repositories;
-using SchedsForums.Persistence.Contexts;
 
 namespace SchedsForums.Infrastructure.Repositories
 {

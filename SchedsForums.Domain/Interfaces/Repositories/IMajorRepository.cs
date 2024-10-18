@@ -1,6 +1,6 @@
 ﻿using SchedsForums.Domain.Entities;
 
-namespace SchedsForums.Interface.Repositories
+namespace SchedsForums.Domain.Interfaces.Repositories
 {
     public interface IMajorRepository : IGenericRepository<Major>
     {

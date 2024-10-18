@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Api", "SchedsForums.Api\SchedsForums.Api.csproj", "{7C94F0A5-AC8C-4ACA-B59F-B1C2A8CD6195}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedsForums.Api", "SchedsForums.Api\SchedsForums.Api.csproj", "{7C94F0A5-AC8C-4ACA-B59F-B1C2A8CD6195}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Application", "SchedsForums.Application\SchedsForums.Application.csproj", "{B0EF6FF1-62CD-4231-85F0-DE59081A7E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedsForums.Application", "SchedsForums.Application\SchedsForums.Application.csproj", "{B0EF6FF1-62CD-4231-85F0-DE59081A7E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Domain", "SchedsForums.Domain\SchedsForums.Domain.csproj", "{E8298190-D2A1-4C21-8A52-AD0960F5628D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedsForums.Domain", "SchedsForums.Domain\SchedsForums.Domain.csproj", "{E8298190-D2A1-4C21-8A52-AD0960F5628D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Infrastructure", "SchedsForums.Infrastructure\SchedsForums.Infrastructure.csproj", "{284BCE34-429D-41F5-BFD0-513F8B21ED24}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Persistence", "SchedsForums.Persistence\SchedsForums.Persistence.csproj", "{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedsForums.Interface", "SchedsForums.Interface\SchedsForums.Interface.csproj", "{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedsForums.Infrastructure", "SchedsForums.Infrastructure\SchedsForums.Infrastructure.csproj", "{284BCE34-429D-41F5-BFD0-513F8B21ED24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +33,6 @@ Global
 		{284BCE34-429D-41F5-BFD0-513F8B21ED24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{284BCE34-429D-41F5-BFD0-513F8B21ED24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{284BCE34-429D-41F5-BFD0-513F8B21ED24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{737BFDBF-C765-4A4F-AC59-9C25E98E3F7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7F74E38-A17B-4A6B-AA30-27EB8F12D4F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

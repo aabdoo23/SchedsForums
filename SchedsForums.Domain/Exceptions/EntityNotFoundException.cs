@@ -1,10 +1,6 @@
 ﻿namespace SchedsForums.Domain.Exceptions
 {
-    public class EntityNotFoundException : Exception
+    public class EntityNotFoundException(string name, object key) : Exception($"{name} ({key}) was not found.")
     {
-        public EntityNotFoundException(string message) : base(message)
-        {
-        }
-
     }
 }

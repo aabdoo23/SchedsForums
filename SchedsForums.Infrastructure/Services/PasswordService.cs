@@ -1,4 +1,4 @@
-﻿using SchedsForums.Interface;
+﻿using SchedsForums.Domain.Interfaces;
 
 namespace SchedsForums.Infrastructure.Services
 {

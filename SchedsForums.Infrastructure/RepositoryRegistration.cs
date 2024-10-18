@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SchedsForums.Domain.Interfaces.Repositories;
 using SchedsForums.Infrastructure.Repositories;
-using SchedsForums.Interface.Repositories;
 
 namespace SchedsForums.Infrastructure
 {

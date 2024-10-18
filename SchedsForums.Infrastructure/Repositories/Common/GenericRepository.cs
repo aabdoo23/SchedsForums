@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchedsForums.Interface;
-using SchedsForums.Persistence.Contexts;
+using SchedsForums.Domain.Interfaces;
+using SchedsForums.Infrastructure.Contexts;
 
 
 namespace SchedsForums.Infrastructure.Repositories.Common
@@ -25,7 +25,7 @@ namespace SchedsForums.Infrastructure.Repositories.Common
 
         public async Task<T> DeleteAsync(string id)
         {
-            var entity = await _dbSet.FindAsync(id)?? throw new NullReferenceException($"Can't find an entity with this Id: {id}.");
+            var entity = await _dbSet.FindAsync(id) ?? throw new NullReferenceException($"Can't find an entity with this Id: {id}.");
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
             return entity;
