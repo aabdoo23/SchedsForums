@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="SchedsForums.Domain">
+      <HintPath>..\SchedsForums.Domain\obj\Debug\net8.0\ref\SchedsForums.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
