@@ -9,11 +9,11 @@ using SchedsForums.Infrastructure.Contexts;
 
 #nullable disable
 
-namespace SchedsForums.Api.Migrations
+namespace SchedsForums.Infrastructure.Migrations
 {
     [DbContext(typeof(SchedsForumsDbContext))]
-    [Migration("20241018113059_initialMigration")]
-    partial class initialMigration
+    [Migration("20241022101035_update-user")]
+    partial class updateuser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,12 +41,16 @@ namespace SchedsForums.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("UserType")
                         .IsRequired()
@@ -60,22 +64,6 @@ namespace SchedsForums.Api.Migrations
                     b.HasDiscriminator<string>("UserType").HasValue("BaseUser");
 
                     b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("SchedsForums.Domain.Entities.Major", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Majors");
                 });
 
             modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Admin", b =>
@@ -96,21 +84,7 @@ namespace SchedsForums.Api.Migrations
                 {
                     b.HasBaseType("SchedsForums.Domain.Entities.Common.BaseUser");
 
-                    b.Property<string>("MajorId")
-                        .HasColumnType("text");
-
-                    b.HasIndex("MajorId");
-
                     b.HasDiscriminator().HasValue("Student");
-                });
-
-            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Student", b =>
-                {
-                    b.HasOne("SchedsForums.Domain.Entities.Major", "Major")
-                        .WithMany()
-                        .HasForeignKey("MajorId");
-
-                    b.Navigation("Major");
                 });
 #pragma warning restore 612, 618
         }

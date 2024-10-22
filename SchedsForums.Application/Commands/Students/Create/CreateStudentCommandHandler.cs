@@ -7,18 +7,11 @@ using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Application.Commands.Students.Create
 {
-    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, StudentRequestBaseDTO>
+    public class CreateStudentCommandHandler(IStudentRepository studentRepository, IHashingService passwordService, IValidator<CreateStudentCommand> validator) : IRequestHandler<CreateStudentCommand, StudentRequestBaseDTO>
     {
-        private readonly IStudentRepository _studentRepository;
-        private readonly IHashingService _passwordService;
-        private readonly IValidator<CreateStudentCommand> _validator;
-
-        public CreateStudentCommandHandler(IStudentRepository studentRepository, IHashingService passwordService, IValidator<CreateStudentCommand> validator)
-        {
-            _studentRepository = studentRepository;
-            _passwordService = passwordService;
-            _validator = validator;
-        }
+        private readonly IStudentRepository _studentRepository = studentRepository;
+        private readonly IHashingService _passwordService = passwordService;
+        private readonly IValidator<CreateStudentCommand> _validator = validator;
 
         public async Task<StudentRequestBaseDTO> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
@@ -34,16 +27,17 @@ namespace SchedsForums.Application.Commands.Students.Create
             {
                 Name = request.Name,
                 Email = request.Email,
-                Password = hashedPassword
+                UserName = request.UserName,
+                PasswordHash = hashedPassword
             };
             await _studentRepository.InsertAsync(student);
 
             return new StudentRequestBaseDTO
             {
                 Name = student.Name,
+                UserName = student.UserName,
                 Email = student.Email
             };
         }
     }
-
 }

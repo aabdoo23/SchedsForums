@@ -5,12 +5,8 @@ using SchedsForums.Infrastructure.Repositories.Common;
 
 namespace SchedsForums.Infrastructure.Repositories
 {
-    public class StudentRepository : BaseRepository<Student>, IStudentRepository
+    public class StudentRepository(SchedsForumsDbContext context) : BaseRepository<Student>(context), IStudentRepository
     {
-        private readonly SchedsForumsDbContext _context;
-        public StudentRepository(SchedsForumsDbContext context) : base(context)
-        {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-        }
+        private readonly SchedsForumsDbContext _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 }

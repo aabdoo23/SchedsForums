@@ -2,18 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SchedsForums.Infrastructure.Contexts;
 
 #nullable disable
 
-namespace SchedsForums.Api.Migrations
+namespace SchedsForums.Infrastructure.Migrations
 {
     [DbContext(typeof(SchedsForumsDbContext))]
-    partial class ForumsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241018113059_initialMigration")]
+    partial class initialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace SchedsForums.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -52,7 +55,7 @@ namespace SchedsForums.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasDiscriminator<string>("UserType").HasValue("BaseUser");
 
@@ -72,7 +75,7 @@ namespace SchedsForums.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Majors", (string)null);
+                    b.ToTable("Majors");
                 });
 
             modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Admin", b =>

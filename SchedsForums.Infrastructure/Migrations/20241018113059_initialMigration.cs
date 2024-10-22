@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SchedsForums.Api.Migrations
+namespace SchedsForums.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class initialMigration : Migration

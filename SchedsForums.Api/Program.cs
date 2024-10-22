@@ -19,6 +19,7 @@ namespace SchedsForums.Api
             builder.Services.RegisterInfrastructureServices();
             builder.Services.RegisterMediatRServices();
             builder.Services.RegisterValidationServices();
+            builder.Services.RegisterJwtAuth(builder.Configuration);
 
             var app = builder.Build();
 
