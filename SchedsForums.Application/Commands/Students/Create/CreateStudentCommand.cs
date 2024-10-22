@@ -3,8 +3,8 @@ using SchedsForums.Application.BaseDTOs;
 
 namespace SchedsForums.Application.Commands.Students.Create
 {
-    public class CreateStudentCommand : IRequest<StudentDTO>
+    public class CreateStudentCommand : StudentRequestBaseDTO, IRequest<StudentRequestBaseDTO>
     {
-        public CreateStudentDTO Student { get; set; }
+        public string Password { get; set; }
     }
 }

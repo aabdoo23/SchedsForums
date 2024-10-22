@@ -10,7 +10,7 @@ using SchedsForums.Infrastructure.Contexts;
 
 namespace SchedsForums.Api.Migrations
 {
-    [DbContext(typeof(ForumsDbContext))]
+    [DbContext(typeof(SchedsForumsDbContext))]
     partial class ForumsDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

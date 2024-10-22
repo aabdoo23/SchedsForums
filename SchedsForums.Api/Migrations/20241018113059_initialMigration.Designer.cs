@@ -11,7 +11,7 @@ using SchedsForums.Infrastructure.Contexts;
 
 namespace SchedsForums.Api.Migrations
 {
-    [DbContext(typeof(ForumsDbContext))]
+    [DbContext(typeof(SchedsForumsDbContext))]
     [Migration("20241018113059_initialMigration")]
     partial class initialMigration
     {

@@ -7,6 +7,5 @@
         Task<T> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(string id);
-
     }
 }

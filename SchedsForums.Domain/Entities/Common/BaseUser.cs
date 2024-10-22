@@ -1,5 +1,4 @@
-﻿
-namespace SchedsForums.Domain.Entities.Common
+﻿namespace SchedsForums.Domain.Entities.Common
 {
     public abstract class BaseUser : BaseEntity
     {
@@ -13,9 +12,8 @@ namespace SchedsForums.Domain.Entities.Common
             Email = email;
             Password = password;
         }
-        protected BaseUser()
+        protected BaseUser() : base()
         {
         }
-
     }
 }

@@ -7,11 +7,9 @@ namespace SchedsForums.Infrastructure.Repositories.Common
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity
     {
-        //TODO: solve referencing issue and throw custom exception
-
-        private readonly ForumsDbContext _context;
+        private readonly SchedsForumsDbContext _context;
         private readonly DbSet<T> _dbSet;
-        public GenericRepository(ForumsDbContext context)
+        public GenericRepository(SchedsForumsDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();
@@ -25,9 +23,12 @@ namespace SchedsForums.Infrastructure.Repositories.Common
 
         public async Task<T> DeleteAsync(string id)
         {
-            var entity = await _dbSet.FindAsync(id) ?? throw new NullReferenceException($"Can't find an entity with this Id: {id}.");
+            var entity = Activator.CreateInstance<T>();
+            entity.GetType().GetProperty("Id")?.SetValue(entity, id); //TODO: because interface// should i inherit the baseEntity class instead and make its set property public?
+            _dbSet.Attach(entity);
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
+
             return entity;
         }
 
@@ -38,7 +39,7 @@ namespace SchedsForums.Infrastructure.Repositories.Common
 
         public async Task<T> GetByIdAsync(string id)
         {
-            return await _dbSet.FindAsync(id) ?? throw new NullReferenceException($"Can't find an entity with this Id: {id}.");
+            return await _dbSet.FindAsync(id); //looks bad returning null
         }
 
         public async Task<T> UpdateAsync(T entity)

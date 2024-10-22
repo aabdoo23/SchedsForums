@@ -1,7 +1,5 @@
 using SchedsForums.Application;
-using SchedsForums.Application.Commands.Students.Create;
 using SchedsForums.Infrastructure;
-using SchedsForums.Persistence.Services;
 
 namespace SchedsForums.Api
 {
@@ -11,18 +9,16 @@ namespace SchedsForums.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //dbcontext, repos and services registration
-            builder.Services.AddPersistenceServices();
+            //Custom services registration
+            builder.Services.RegisterDbContext();
             builder.Services.RegisterInfrastructureRepositories();
             builder.Services.RegisterInfrastructureServices();
-            builder.Services.AddMediatRServices();
-
+            builder.Services.RegisterMediatRServices();
+            builder.Services.RegisterValidationServices();
 
             var app = builder.Build();
 

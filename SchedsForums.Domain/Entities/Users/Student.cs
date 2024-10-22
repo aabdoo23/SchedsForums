@@ -8,6 +8,5 @@ namespace SchedsForums.Domain.Entities.Users
         {
         }
         public Student() : base() { }
-        public virtual Major? Major { get; set; }
     }
 }

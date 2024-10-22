@@ -12,17 +12,14 @@ namespace SchedsForums.Api.Controllers
 
         public StudentsController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentDTO studentDto)
+        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentCommand createStudentCommand)
         {
-            var createStudentCommand = new CreateStudentCommand { Student = studentDto };
-
             var result = await _mediator.Send(createStudentCommand);
             return Ok(result);
-            //return CreatedAtAction(nameof(GetStudentById), new { id = result.Id }, result);
         }
     }
 }
