@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SchedsForums.Infrastructure\SchedsForums.Infrastructure.csproj" />
+    <ProjectReference Include="..\SchedsForums.Domain\SchedsForums.Domain.csproj" />
   </ItemGroup>
-
 </Project>

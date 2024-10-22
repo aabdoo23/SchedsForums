@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SchedsForums.Domain.Interfaces.Repositories;
+using SchedsForums.Application.Interfaces.Repositories;
+using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Infrastructure.Contexts;
 using SchedsForums.Infrastructure.Repositories;
 using SchedsForums.Infrastructure.Services;
-using SchedsForums.Infrastructure.Services.Interfaces;
 
 namespace SchedsForums.Infrastructure
 {

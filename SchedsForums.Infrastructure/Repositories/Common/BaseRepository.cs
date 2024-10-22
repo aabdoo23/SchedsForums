@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchedsForums.Domain.Interfaces;
+using SchedsForums.Application.Interfaces.Common;
+using SchedsForums.Domain.Entities.Common;
 using SchedsForums.Infrastructure.Contexts;
-
 
 namespace SchedsForums.Infrastructure.Repositories.Common
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         private readonly SchedsForumsDbContext _context;
         private readonly DbSet<T> _dbSet;
-        public GenericRepository(SchedsForumsDbContext context)
+        public BaseRepository(SchedsForumsDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = context.Set<T>();
         }
         public async Task<T> InsertAsync(T entity)
@@ -21,15 +21,9 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public async Task<T> DeleteAsync(string id)
+        public async Task DeleteAsync(string id)
         {
-            var entity = Activator.CreateInstance<T>();
-            entity.GetType().GetProperty("Id")?.SetValue(entity, id); //TODO: because interface// should i inherit the baseEntity class instead and make its set property public?
-            _dbSet.Attach(entity);
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
-
-            return entity;
+            await _dbSet.Where(e => e.Id == id).ExecuteDeleteAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -37,9 +31,9 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T?> GetByIdAsync(string id)
         {
-            return await _dbSet.FindAsync(id); //looks bad returning null
+            return await _dbSet.FindAsync(id);
         }
 
         public async Task<T> UpdateAsync(T entity)

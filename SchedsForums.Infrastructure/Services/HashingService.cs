@@ -1,4 +1,5 @@
-﻿using SchedsForums.Infrastructure.Services.Interfaces;
+﻿using SchedsForums.Application.Interfaces.Services;
+
 namespace SchedsForums.Infrastructure.Services
 {
     public class HashingService : IHashingService

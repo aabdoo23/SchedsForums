@@ -1,9 +1,6 @@
-﻿
-using SchedsForums.Domain.Interfaces;
-
-namespace SchedsForums.Domain.Entities.Common
+﻿namespace SchedsForums.Domain.Entities.Common
 {
-    public class BaseEntity : IBaseEntity
+    public class BaseEntity
     {
         public string Id { get; protected set; }
         public DateTime CreatedAt { get; set; }

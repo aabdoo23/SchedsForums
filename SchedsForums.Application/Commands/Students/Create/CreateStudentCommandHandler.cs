@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using MediatR;
 using SchedsForums.Application.BaseDTOs;
+using SchedsForums.Application.Interfaces.Repositories;
+using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
-using SchedsForums.Domain.Interfaces.Repositories;
-using SchedsForums.Infrastructure.Services.Interfaces;
 
 namespace SchedsForums.Application.Commands.Students.Create
 {
@@ -22,7 +22,7 @@ namespace SchedsForums.Application.Commands.Students.Create
 
         public async Task<StudentRequestBaseDTO> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request);
+            var validationResult = await _validator.ValidateAsync(request,cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new ValidationException(validationResult.Errors);
@@ -36,7 +36,6 @@ namespace SchedsForums.Application.Commands.Students.Create
                 Email = request.Email,
                 Password = hashedPassword
             };
-
             await _studentRepository.InsertAsync(student);
 
             return new StudentRequestBaseDTO

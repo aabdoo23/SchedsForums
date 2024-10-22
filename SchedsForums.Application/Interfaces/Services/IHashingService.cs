@@ -1,5 +1,6 @@
-﻿using SchedsForums.Domain.Interfaces;
-namespace SchedsForums.Infrastructure.Services.Interfaces
+﻿using SchedsForums.Application.Interfaces.Common;
+
+namespace SchedsForums.Application.Interfaces.Services
 {
     public interface IHashingService : IBaseService
     {
