@@ -6,4 +6,33 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Admins\" />
+    <Folder Include="Commands\Moderators\" />
+    <Folder Include="Commands\Majors\" />
+    <Folder Include="Queries\Admins\" />
+    <Folder Include="Queries\Majors\" />
+    <Folder Include="Queries\Moderators\" />
+    <Folder Include="Queries\Students\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SchedsForums.Domain\SchedsForums.Domain.csproj" />
+  </ItemGroup>
 </Project>
