@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SchedsForums.Application.Commands.BaseUser;
+using SchedsForums.Application.BaseValidators;
 using SchedsForums.Application.Interfaces.Repositories;
 
 namespace SchedsForums.Application.Commands.Students.Create

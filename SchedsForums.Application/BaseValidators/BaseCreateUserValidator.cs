@@ -2,7 +2,7 @@
 using SchedsForums.Application.BaseDTOs;
 using SchedsForums.Application.Interfaces.Repositories;
 
-namespace SchedsForums.Application.Commands.BaseUser
+namespace SchedsForums.Application.BaseValidators
 {
     public abstract class BaseCreateUserValidator<T> : AbstractValidator<T> where T : BaseCreateUserCommand
     {

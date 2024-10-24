@@ -33,6 +33,7 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IFacultyRepository, FacultyRepository>();
             services.AddScoped<IMajorRepository, MajorRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<IModeratorRepository, ModeratorRepository>();
 
             return services;
         }

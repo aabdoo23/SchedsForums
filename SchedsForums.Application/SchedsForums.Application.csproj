@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Moderators\" />
     <Folder Include="Queries\Admins\" />
     <Folder Include="Queries\Majors\" />
     <Folder Include="Queries\Moderators\" />
