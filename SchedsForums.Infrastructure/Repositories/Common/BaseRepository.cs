@@ -42,5 +42,10 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             await _context.SaveChangesAsync();
             return entity;
         }
+
+        public async Task<bool> ExistsAsync(string id)
+        {
+            return await _dbSet.AnyAsync(e => e.Id == id);
+        }
     }
 }

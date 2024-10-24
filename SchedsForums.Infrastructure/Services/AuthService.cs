@@ -9,13 +9,10 @@ using System.Text;
 
 namespace SchedsForums.Infrastructure.Services
 {
-    public class AuthService : IAuthService
+    public class AuthService(IConfiguration configuration) : IAuthService
     {
-        private readonly IConfiguration _config;
-        public AuthService(IConfiguration configuration)
-        {
-            _config = configuration;
-        }
+        private readonly IConfiguration _config = configuration;
+
         public string GenerateToken(BaseUser user)
         {
             var key = Environment.GetEnvironmentVariable("JWT_KEY") ?? throw new NullReferenceException("Can't find JWT Key in Env Variables.");

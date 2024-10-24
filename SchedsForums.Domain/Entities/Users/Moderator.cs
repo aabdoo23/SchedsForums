@@ -4,5 +4,6 @@ namespace SchedsForums.Domain.Entities.Users
 {
     public class Moderator : BaseUser
     {
+        public virtual IEnumerable<BaseForum>? ModeratedForums { get; set; }
     }
 }

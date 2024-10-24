@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SchedsForums.Application.Commands.Students.Login;
+using SchedsForums.Application.Commands.BaseUser.Login;
 
 namespace SchedsForums.Api.Controllers
 {

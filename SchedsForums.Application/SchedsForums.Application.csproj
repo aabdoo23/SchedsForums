@@ -25,7 +25,6 @@
   <ItemGroup>
     <Folder Include="Commands\Admins\" />
     <Folder Include="Commands\Moderators\" />
-    <Folder Include="Commands\Majors\" />
     <Folder Include="Queries\Admins\" />
     <Folder Include="Queries\Majors\" />
     <Folder Include="Queries\Moderators\" />

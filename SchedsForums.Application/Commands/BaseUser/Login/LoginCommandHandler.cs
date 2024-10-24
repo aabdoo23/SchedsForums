@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using SchedsForums.Application.Commands.Students.Login.DTOs;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 
-namespace SchedsForums.Application.Commands.Students.Login
+namespace SchedsForums.Application.Commands.BaseUser.Login
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponseDTO>
     {

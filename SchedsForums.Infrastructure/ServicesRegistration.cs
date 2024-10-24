@@ -20,7 +20,7 @@ namespace SchedsForums.Infrastructure
 
             services.AddDbContext<SchedsForumsDbContext>(options =>
                 options.UseNpgsql(connectionString, npgsqlOptions =>
-                    npgsqlOptions.MigrationsAssembly("SchedsForums.Infrastructure")) 
+                    npgsqlOptions.MigrationsAssembly("SchedsForums.Infrastructure"))
             );
 
             return services;
@@ -30,6 +30,8 @@ namespace SchedsForums.Infrastructure
         {
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
+            services.AddScoped<IFacultyRepository, FacultyRepository>();
+            services.AddScoped<IMajorRepository, MajorRepository>();
             return services;
         }
         public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services)
@@ -43,7 +45,8 @@ namespace SchedsForums.Infrastructure
         {
             ArgumentNullException.ThrowIfNull(configuration);
             var key = Environment.GetEnvironmentVariable("JWT_KEY") ?? throw new NullReferenceException("Can't find JWT Key in Env Variables.");
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,

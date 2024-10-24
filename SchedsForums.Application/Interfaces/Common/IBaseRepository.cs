@@ -4,6 +4,7 @@ namespace SchedsForums.Application.Interfaces.Common
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
+        Task<bool> ExistsAsync(string id);
         Task<T?> GetByIdAsync(string id);
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> InsertAsync(T entity);
