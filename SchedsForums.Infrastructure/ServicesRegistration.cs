@@ -32,6 +32,8 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
             services.AddScoped<IFacultyRepository, FacultyRepository>();
             services.AddScoped<IMajorRepository, MajorRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+
             return services;
         }
         public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services)

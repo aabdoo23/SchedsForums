@@ -1,6 +1,6 @@
 ﻿namespace SchedsForums.Application.BaseDTOs
 {
-    public class StudentRequestBaseDTO
+    public class BaseUserRequestBaseDTO
     {
         public string Name { get; set; }
         public string UserName { get; set; }

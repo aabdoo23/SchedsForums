@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchedsForums.Application.Commands.Majors.Create;
 
@@ -10,6 +11,7 @@ namespace SchedsForums.Api.Controllers
     {
         private readonly IMediator _mediator = mediator;
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMajor([FromBody] CreateMajorCommand command)
         {
             if (command == null)

@@ -2,7 +2,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Common;
-using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

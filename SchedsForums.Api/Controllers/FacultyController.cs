@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchedsForums.Application.Commands.Faculties.Create;
 
@@ -9,6 +10,7 @@ namespace SchedsForums.Api.Controllers
     public class FacultyController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateFaculty([FromBody] CreateFacultyCommand command)
         {

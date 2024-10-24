@@ -3,8 +3,7 @@ using SchedsForums.Application.BaseDTOs;
 
 namespace SchedsForums.Application.Commands.Students.Create
 {
-    public class CreateStudentCommand : StudentRequestBaseDTO, IRequest<StudentRequestBaseDTO>
+    public class CreateStudentCommand : BaseCreateUserCommand, IRequest<BaseUserRequestBaseDTO> //keeping this for the future to add more data on sign up
     {
-        public string Password { get; set; }
     }
 }

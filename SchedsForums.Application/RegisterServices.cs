@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SchedsForums.Application.Behaviors;
+using SchedsForums.Application.Commands.Admins.Create;
 using SchedsForums.Application.Commands.BaseUser.Login;
 using SchedsForums.Application.Commands.Faculties.Create;
 using SchedsForums.Application.Commands.Majors.Create;
@@ -17,7 +18,8 @@ namespace SchedsForums.Application
             services.AddMediatR(options => options.RegisterServicesFromAssemblies(typeof(LoginCommandHandler).Assembly));
             services.AddMediatR(options => options.RegisterServicesFromAssemblies(typeof(CreateMajorCommandHandler).Assembly));
             services.AddMediatR(options => options.RegisterServicesFromAssemblies(typeof(CreateFacultyCommandHandler).Assembly));
-            
+            services.AddMediatR(options => options.RegisterServicesFromAssemblies(typeof(CreateAdminCommandHandler).Assembly));
+
             return services;
         }
 
@@ -25,7 +27,8 @@ namespace SchedsForums.Application
         {
             services.AddValidatorsFromAssemblyContaining<CreateStudentValidator>();
             services.AddValidatorsFromAssemblyContaining<CreateMajorValidator>();
-            
+            services.AddValidatorsFromAssemblyContaining<CreateAdminValidator>();
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             return services;
         }
