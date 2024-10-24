@@ -1,20 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SchedsForums.Application.Commands.Moderators.Create;
+using SchedsForums.Application.Commands.Users.Moderators.Create;
 
 namespace SchedsForums.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ModeratorController : ControllerBase
+    public class ModeratorController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
-        public ModeratorController(IMediator mediator)
-        {
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        }
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateModerator([FromBody] CreateModeratorCommand createModeratorCommand)

@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Forums\CourseForum\Create\" />
+    <Folder Include="Commands\Forums\FacultyForum\Create\" />
+    <Folder Include="Commands\Forums\GeneralForum\Create\" />
+    <Folder Include="Commands\Forums\MajorForum\Create\" />
     <Folder Include="Queries\Admins\" />
     <Folder Include="Queries\Majors\" />
     <Folder Include="Queries\Moderators\" />

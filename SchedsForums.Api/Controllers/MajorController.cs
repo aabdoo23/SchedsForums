@@ -9,7 +9,8 @@ namespace SchedsForums.Api.Controllers
     [Route("api/[controller]")]
     public class MajorController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator = mediator;
+        private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateMajor([FromBody] CreateMajorCommand command)

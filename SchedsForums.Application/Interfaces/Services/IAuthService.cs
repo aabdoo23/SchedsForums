@@ -1,9 +1,8 @@
-﻿using SchedsForums.Application.Interfaces.Common;
-using SchedsForums.Domain.Entities.Common;
+﻿using SchedsForums.Domain.Entities.Common;
 
 namespace SchedsForums.Application.Interfaces.Services
 {
-    public interface IAuthService : IBaseService
+    public interface IAuthService
     {
         bool VerifyPassword(BaseUser user, string password);
         string GenerateToken(BaseUser user);

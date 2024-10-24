@@ -9,7 +9,6 @@ namespace SchedsForums.Application.Commands.Majors.Create
 
         public CreateMajorValidator(IFacultyRepository facultyRepository)
         {
-            Console.WriteLine("Validating Create Major");
             _facultyRepository = facultyRepository;
 
             RuleFor(x => x.ShortName)

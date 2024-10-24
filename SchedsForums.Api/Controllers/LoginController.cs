@@ -1,19 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SchedsForums.Application.Commands.BaseUser.Login;
+using SchedsForums.Application.Commands.Users.BaseUser.Login;
 
 namespace SchedsForums.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class LoginController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public LoginController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginCommand command)

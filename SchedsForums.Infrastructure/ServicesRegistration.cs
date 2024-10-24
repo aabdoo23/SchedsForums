@@ -14,7 +14,7 @@ namespace SchedsForums.Infrastructure
 {
     public static class ServicesRegistration
     {
-        public static IServiceCollection RegisterDbContext(this IServiceCollection services)
+        public static IServiceCollection AddDbContext(this IServiceCollection services)
         {
             var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
 
@@ -26,25 +26,26 @@ namespace SchedsForums.Infrastructure
             return services;
         }
 
-        public static IServiceCollection RegisterInfrastructureRepositories(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructureRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IFacultyRepository, FacultyRepository>();
             services.AddScoped<IMajorRepository, MajorRepository>();
-            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IModeratorRepository, ModeratorRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
 
             return services;
         }
-        public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IHashingService, HashingService>();
             services.AddScoped<IAuthService, AuthService>();
             return services;
         }
 
-        public static IServiceCollection RegisterJwtAuth(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration configuration)
         {
             ArgumentNullException.ThrowIfNull(configuration);
             var key = Environment.GetEnvironmentVariable("JWT_KEY") ?? throw new NullReferenceException("Can't find JWT Key in Env Variables.");

@@ -4,31 +4,31 @@ using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
 
-namespace SchedsForums.Application.Commands.Admins.Create
+namespace SchedsForums.Application.Commands.Users.Students.Create
 {
-    public class CreateAdminCommandHandler(IAdminRepository adminRepository, IHashingService passwordService) : IRequestHandler<CreateAdminCommand, BaseUserRequestBaseDTO>
+    public class CreateStudentCommandHandler(IStudentRepository studentRepository, IHashingService passwordService) : IRequestHandler<CreateStudentCommand, BaseUserRequestBaseDTO>
     {
-        private readonly IAdminRepository _adminRepository = adminRepository;
+        private readonly IStudentRepository _studentRepository = studentRepository;
         private readonly IHashingService _passwordService = passwordService;
 
-        public async Task<BaseUserRequestBaseDTO> Handle(CreateAdminCommand request, CancellationToken cancellationToken)
+        public async Task<BaseUserRequestBaseDTO> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var hashedPassword = _passwordService.HashPassword(request.Password);
 
-            var admin = new Admin
+            var student = new Student
             {
                 Name = request.Name,
                 Email = request.Email,
                 UserName = request.UserName,
                 PasswordHash = hashedPassword
             };
-            var created = await _adminRepository.InsertAsync(admin);
+            await _studentRepository.InsertAsync(student);
 
             return new BaseUserRequestBaseDTO
             {
-                Name = admin.Name,
-                UserName = admin.UserName,
-                Email = admin.Email
+                Name = student.Name,
+                UserName = student.UserName,
+                Email = student.Email
             };
         }
     }

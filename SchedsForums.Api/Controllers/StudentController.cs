@@ -1,19 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SchedsForums.Application.Commands.Students.Create;
+using SchedsForums.Application.Commands.Users.Students.Create;
 
 namespace SchedsForums.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentsController : ControllerBase
+    public class StudentsController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public StudentsController(IMediator mediator)
-        {
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        }
+        private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
         [HttpPost]
         public async Task<IActionResult> CreateStudent([FromBody] CreateStudentCommand createStudentCommand)

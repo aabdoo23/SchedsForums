@@ -2,7 +2,7 @@
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 
-namespace SchedsForums.Application.Commands.BaseUser.Login
+namespace SchedsForums.Application.Commands.Users.BaseUser.Login
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponseDTO>
     {

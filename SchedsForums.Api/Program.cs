@@ -14,12 +14,12 @@ namespace SchedsForums.Api
             builder.Services.AddSwaggerGen();
 
             //Custom services registration
-            builder.Services.RegisterDbContext();
-            builder.Services.RegisterInfrastructureRepositories();
-            builder.Services.RegisterInfrastructureServices();
-            builder.Services.RegisterMediatRServices();
-            builder.Services.RegisterValidationServices();
-            builder.Services.RegisterJwtAuth(builder.Configuration);
+            builder.Services.AddDbContext();
+            builder.Services.AddInfrastructureRepositories();
+            builder.Services.AddInfrastructureServices();
+            builder.Services.AddMediatRServices();
+            builder.Services.AddValidationServices();
+            builder.Services.AddJwtAuth(builder.Configuration);
 
             var app = builder.Build();
 
