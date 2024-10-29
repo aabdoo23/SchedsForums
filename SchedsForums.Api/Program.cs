@@ -18,13 +18,11 @@ namespace SchedsForums.Api
             builder.Services.AddSwaggerGen();
 
             //Adding Custom services 
-            builder.Services.AddDbContext();
-            builder.Services.AddInfrastructureRepositories();
             builder.Services.AddInfrastructureServices();
-            builder.Services.AddMediatRServices();
-            builder.Services.AddValidationServices();
-            builder.Services.ConfigureJWTOptions(builder.Configuration);
+            builder.Services.AddMediatRServicesAndValidators();
             builder.Services.AddJwtAuthentication(builder.Configuration);
+            builder.Services.AddSchedsForumsDbContext();
+            builder.Services.AddInfrastructureRepositories();
 
             var app = builder.Build();
 

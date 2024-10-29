@@ -26,7 +26,7 @@ namespace SchedsForums.Infrastructure.Contexts
 
         private void SetTimestamps()
         {
-            var entries = ChangeTracker.Entries<BaseEntity>();
+            var entries = ChangeTracker.Entries<AuditableEntity>();
 
             foreach (var entry in entries)
             {

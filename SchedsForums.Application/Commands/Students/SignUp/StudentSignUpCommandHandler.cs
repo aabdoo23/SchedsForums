@@ -1,20 +1,19 @@
 ﻿using MediatR;
-using SchedsForums.Application.Commands.BaseUser.SignUp.DTOs;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
 
-namespace SchedsForums.Application.Commands.BaseUser.SignUp
+namespace SchedsForums.Application.Commands.Students.SignUp
 {
-    public class UserSignUpCommandHandler(
+    public class StudentSignUpCommandHandler(
         IBaseRepository<Student> studentRepository,
-        IHashingService passwordService)
-        : IRequestHandler<UserSignUpRequestDTO, UserSignUpResponseDTO>
+        IPasswordService passwordService)
+        : IRequestHandler<StudentSignUpCommand, StudentSignUpResponseDTO>
     {
         private readonly IBaseRepository<Student> _studentRepository = studentRepository;
-        private readonly IHashingService _passwordService = passwordService;
+        private readonly IPasswordService _passwordService = passwordService;
 
-        public async Task<UserSignUpResponseDTO> Handle(UserSignUpRequestDTO request, CancellationToken cancellationToken)
+        public async Task<StudentSignUpResponseDTO> Handle(StudentSignUpCommand request, CancellationToken cancellationToken)
         {
             var hashedPassword = _passwordService.HashPassword(request.Password);
 
@@ -27,7 +26,7 @@ namespace SchedsForums.Application.Commands.BaseUser.SignUp
             };
             await _studentRepository.InsertAsync(student);
 
-            return new UserSignUpResponseDTO
+            return new StudentSignUpResponseDTO
             {
                 FullName = student.Name,
                 UserName = student.Username,

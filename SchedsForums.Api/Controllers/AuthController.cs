@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SchedsForums.Application.Commands.BaseUser.Login.DTOs;
-using SchedsForums.Application.Commands.BaseUser.SignUp.DTOs;
+using SchedsForums.Application.Commands.BaseUsers.Login;
+using SchedsForums.Application.Commands.Students.SignUp;
 
 namespace SchedsForums.Api.Controllers
 {
@@ -17,14 +17,15 @@ namespace SchedsForums.Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> LoginAsync([FromBody] LoginRequestDTO command)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);
 
         }
+
         [HttpPost("SignUp")]
-        public async Task<IActionResult> SignUpAsync([FromBody] UserSignUpRequestDTO command)
+        public async Task<IActionResult> SignUpAsync([FromBody] StudentSignUpCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

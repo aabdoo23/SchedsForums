@@ -7,7 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\Admins\**" />
+    <Compile Remove="Commands\Majors\**" />
+    <Compile Remove="Commands\Moderators\**" />
+    <EmbeddedResource Remove="Commands\Admins\**" />
+    <EmbeddedResource Remove="Commands\Majors\**" />
+    <EmbeddedResource Remove="Commands\Moderators\**" />
+    <None Remove="Commands\Admins\**" />
+    <None Remove="Commands\Majors\**" />
+    <None Remove="Commands\Moderators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
@@ -23,9 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Admins\" />
-    <Folder Include="Commands\Moderators\" />
-    <Folder Include="Commands\Majors\" />
     <Folder Include="Queries\Admins\" />
     <Folder Include="Queries\Majors\" />
     <Folder Include="Queries\Moderators\" />

@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Common;
-using SchedsForums.Infrastructure.Options;
+using SchedsForums.Infrastructure.ConfigurationOptions;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -27,7 +27,7 @@ namespace SchedsForums.Infrastructure.Services
             var role = user.GetType().Name;
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Role, role)
             };

@@ -1,6 +1,6 @@
-﻿namespace SchedsForums.Application.Commands.BaseUser.SignUp.DTOs
+﻿namespace SchedsForums.Application.Commands.Students.SignUp
 {
-    public class UserSignUpResponseDTO
+    public class StudentSignUpResponseDTO
     {
         public string FullName { get; set; }
         public string UserName { get; set; }

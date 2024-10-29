@@ -1,4 +1,4 @@
-﻿namespace SchedsForums.Application.Commands.BaseUser.Login.DTOs
+﻿namespace SchedsForums.Application.Commands.BaseUsers.Login
 {
     public class LoginResponseDTO
     {

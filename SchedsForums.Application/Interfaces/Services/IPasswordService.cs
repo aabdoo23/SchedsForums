@@ -2,8 +2,9 @@
 
 namespace SchedsForums.Application.Interfaces.Services
 {
-    public interface IAuthService
+    public interface IPasswordService
     {
+        string HashPassword(string password);
         bool VerifyPassword(BaseUser user, string password);
     }
 }

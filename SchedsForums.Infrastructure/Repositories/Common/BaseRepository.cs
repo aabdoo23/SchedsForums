@@ -23,7 +23,7 @@ namespace SchedsForums.Infrastructure.Repositories.Common
 
         public async Task DeleteAsync(string id)
         {
-            await _dbSet.Where(e => e.Id == id).ExecuteDeleteAsync();
+            await _dbSet.Where(e => e.Id.ToString() == id).ExecuteDeleteAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()

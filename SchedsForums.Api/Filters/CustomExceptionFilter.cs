@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Net;
 
 namespace SchedsForums.API.Filters
 {
@@ -7,23 +8,44 @@ namespace SchedsForums.API.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            if (context.Exception is UnauthorizedAccessException)
+            var exception = context.Exception;
+
+            context.Result = exception switch
             {
-                context.Result = new UnauthorizedObjectResult("Invalid credentials");
-                context.ExceptionHandled = true;
-            }
-            else
-            {
-                context.Result = new ObjectResult(new
+                UnauthorizedAccessException => new ObjectResult("Invalid credentials")
                 {
-                    Message = "An error occurred",
-                    Details = context.Exception.Message
+                    StatusCode = (int)HttpStatusCode.Unauthorized
+                },
+
+                ArgumentNullException => new ObjectResult(new
+                {
+                    Message = "A required argument was null.",
+                    Details = exception.Message
                 })
                 {
-                    StatusCode = 500
-                };
-                context.ExceptionHandled = true;
-            }
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                },
+
+                InvalidOperationException => new ObjectResult(new
+                {
+                    Message = "Operation is not valid.",
+                    Details = exception.Message
+                })
+                {
+                    StatusCode = (int)HttpStatusCode.Conflict
+                },
+
+                _ => new ObjectResult(new
+                {
+                    Message = "An error occurred",
+                    Details = exception.Message
+                })
+                {
+                    StatusCode = (int)HttpStatusCode.InternalServerError
+                }
+            };
+
+            context.ExceptionHandled = true;
         }
     }
 }

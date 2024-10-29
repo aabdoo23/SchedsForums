@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace SchedsForums.Application.Commands.BaseUser.SignUp.DTOs
+namespace SchedsForums.Application.Commands.Students.SignUp
 {
-    public class UserSignUpRequestDTO : IRequest<UserSignUpResponseDTO>
+    public class StudentSignUpCommand : IRequest<StudentSignUpResponseDTO>
     {
         public string FullName { get; set; }
         public string UserName { get; set; }
