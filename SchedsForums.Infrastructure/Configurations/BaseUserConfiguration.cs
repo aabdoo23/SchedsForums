@@ -11,9 +11,7 @@ namespace SchedsForums.Infrastructure.Configurations
         {
             builder
                 .HasDiscriminator<string>("UserType")
-                .HasValue<Admin>("Admin")
-                .HasValue<Student>("Student")
-                .HasValue<Moderator>("Moderator");
+                .HasValue<Student>("Student");
         }
     }
 }

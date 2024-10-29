@@ -19,7 +19,7 @@ namespace SchedsForums.Infrastructure.Repositories
         public async Task<BaseUser> GetBaseUserByUserNameAsync(string userName)
         {
             return await _context.Users
-                .FirstOrDefaultAsync(user => user.UserName == userName);
+                .FirstOrDefaultAsync(user => user.Username == userName);
         }
     }
 }

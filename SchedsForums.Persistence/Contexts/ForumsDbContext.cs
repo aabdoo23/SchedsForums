@@ -13,20 +13,12 @@ namespace SchedsForums.Persistence.Contexts
         {
             modelBuilder.Entity<BaseUser>()
                 .HasDiscriminator<string>("UserType")
-                .HasValue<Admin>("Admin")
-                .HasValue<Student>("Student")
-                .HasValue<Moderator>("Moderator");
+                .HasValue<Student>("Student");
 
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<BaseUser> Users { get; set; }
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Student> Students { get; set; }
-        public DbSet<Moderator> Moderators { get; set; }
-
-
-        public DbSet<Major> Majors { get; set; }
-
     }
 }

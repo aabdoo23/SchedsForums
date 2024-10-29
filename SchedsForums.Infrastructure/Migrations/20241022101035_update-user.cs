@@ -27,7 +27,7 @@ namespace SchedsForums.Infrastructure.Migrations
                 table: "Users");
 
             migrationBuilder.AddColumn<string>(
-                name: "UserName",
+                name: "Username",
                 table: "Users",
                 type: "text",
                 nullable: false,
@@ -38,7 +38,7 @@ namespace SchedsForums.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "UserName",
+                name: "Username",
                 table: "Users");
 
             migrationBuilder.AddColumn<string>(

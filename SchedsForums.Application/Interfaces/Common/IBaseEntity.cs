@@ -1,6 +1,7 @@
 ﻿namespace SchedsForums.Application.Interfaces.Common
 {
-    public interface IBaseService
+    public interface IBaseEntity
     {
+        string Id { get; }
     }
 }

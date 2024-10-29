@@ -3,18 +3,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
+using SchedsForums.Domain.Entities.Users;
 using SchedsForums.Infrastructure.Contexts;
+using SchedsForums.Infrastructure.Options;
 using SchedsForums.Infrastructure.Repositories;
+using SchedsForums.Infrastructure.Repositories.Common;
 using SchedsForums.Infrastructure.Services;
 using System.Text;
 
 namespace SchedsForums.Infrastructure
 {
-    public static class ServicesRegistration
+    public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection RegisterDbContext(this IServiceCollection services)
+        public static IServiceCollection AddDbContext(this IServiceCollection services)
         {
             var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
 
@@ -26,20 +30,33 @@ namespace SchedsForums.Infrastructure
             return services;
         }
 
-        public static IServiceCollection RegisterInfrastructureRepositories(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructureRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
             return services;
         }
-        public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services)
+
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IHashingService, HashingService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IJWTService, JWTService>();
             return services;
         }
 
-        public static IServiceCollection RegisterJwtAuth(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection ConfigureJWTOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<JwtOptions>(options =>
+            {
+                configuration.GetSection("Jwt").Bind(options);
+                options.Key = Environment.GetEnvironmentVariable("JWT_KEY")
+                    ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
+            });
+            return services;
+        }
+
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             ArgumentNullException.ThrowIfNull(configuration);
             var key = Environment.GetEnvironmentVariable("JWT_KEY") ?? throw new NullReferenceException("Can't find JWT Key in Env Variables.");

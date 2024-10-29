@@ -1,8 +1,6 @@
-﻿using SchedsForums.Application.Interfaces.Common;
-
-namespace SchedsForums.Application.Interfaces.Services
+﻿namespace SchedsForums.Application.Interfaces.Services
 {
-    public interface IHashingService : IBaseService
+    public interface IHashingService
     {
         string HashPassword(string password);
     }

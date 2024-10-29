@@ -2,14 +2,9 @@
 {
     public class BaseEntity
     {
-        public string Id { get; protected set; }
+        public string Id { get; protected set; } = Guid.NewGuid().ToString();
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public BaseEntity()
-        {
-            Id = Guid.NewGuid().ToString();
-            CreatedAt = DateTime.UtcNow;
-            UpdatedAt = DateTime.UtcNow;
-        }
+        
     }
 }

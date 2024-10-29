@@ -10,9 +10,7 @@ namespace SchedsForums.Persistence.Services
         {
             var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
             services.AddDbContext<ForumsDbContext>(options =>
-                options.UseNpgsql((connectionString)
-                //, b => b.MigrationsAssembly("SchedsForums.Persistence")
-                ));
+                options.UseNpgsql((connectionString)));
 
             return services;
         }

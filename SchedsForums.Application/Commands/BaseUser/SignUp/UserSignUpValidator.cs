@@ -1,14 +1,15 @@
 ﻿using FluentValidation;
+using SchedsForums.Application.Commands.BaseUser.SignUp.DTOs;
 
-namespace SchedsForums.Application.Commands.Students.Create
+namespace SchedsForums.Application.Commands.BaseUser.SignUp
 {
-    public class CreateStudentValidator : AbstractValidator<CreateStudentCommand>
+    public class UserSignUpValidator : AbstractValidator<UserSignUpRequestDTO>
     {
-        public CreateStudentValidator()
+        public UserSignUpValidator()
         {
-            RuleFor(student => student.Name)
-                .NotEmpty().WithMessage("Name is required.")
-                .Length(2, 50).WithMessage("Name must be between 2 and 50 characters.");
+            RuleFor(student => student.FullName)
+                .NotEmpty().WithMessage("FullName is required.")
+                .Length(2, 50).WithMessage("FullName must be between 2 and 50 characters.");
 
             RuleFor(student => student.Email)
                 .NotEmpty().WithMessage("Email is required.")

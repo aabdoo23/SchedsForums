@@ -2,8 +2,8 @@
 
 namespace SchedsForums.Application.Interfaces.Services
 {
-    public interface IAuthService
+    public interface IJWTService
     {
-        bool VerifyPassword(BaseUser user, string password);
+        string GenerateToken(BaseUser user);
     }
 }
