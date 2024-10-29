@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SchedsForums.Infrastructure.Contexts;
@@ -12,11 +11,9 @@ using SchedsForums.Infrastructure.Contexts;
 namespace SchedsForums.Infrastructure.Migrations
 {
     [DbContext(typeof(SchedsForumsDbContext))]
-    [Migration("20241022101035_update-user")]
-    partial class updateuser
+    partial class SchedsForumsDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,8 +24,9 @@ namespace SchedsForums.Infrastructure.Migrations
 
             modelBuilder.Entity("SchedsForums.Domain.Entities.Common.BaseUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -37,7 +35,7 @@ namespace SchedsForums.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -48,14 +46,14 @@ namespace SchedsForums.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<string>("UserType")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("character varying(13)");
 
                     b.HasKey("Id");
 
@@ -64,20 +62,6 @@ namespace SchedsForums.Infrastructure.Migrations
                     b.HasDiscriminator<string>("UserType").HasValue("BaseUser");
 
                     b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Admin", b =>
-                {
-                    b.HasBaseType("SchedsForums.Domain.Entities.Common.BaseUser");
-
-                    b.HasDiscriminator().HasValue("Admin");
-                });
-
-            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Moderator", b =>
-                {
-                    b.HasBaseType("SchedsForums.Domain.Entities.Common.BaseUser");
-
-                    b.HasDiscriminator().HasValue("Moderator");
                 });
 
             modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Student", b =>

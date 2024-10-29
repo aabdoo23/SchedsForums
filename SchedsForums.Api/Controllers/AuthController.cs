@@ -13,7 +13,7 @@ namespace SchedsForums.Api.Controllers
 
         public AuthController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [HttpPost("Login")]

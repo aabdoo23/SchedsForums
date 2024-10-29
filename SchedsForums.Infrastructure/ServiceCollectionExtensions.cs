@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
@@ -14,7 +13,6 @@ using SchedsForums.Infrastructure.Repositories;
 using SchedsForums.Infrastructure.Repositories.Common;
 using SchedsForums.Infrastructure.Services;
 using System.Text;
-using Options = Microsoft.Extensions.Options.Options;
 
 namespace SchedsForums.Infrastructure
 {
@@ -26,7 +24,7 @@ namespace SchedsForums.Infrastructure
 
             services.AddDbContext<SchedsForumsDbContext>(options =>
                 options.UseNpgsql(connectionString, npgsqlOptions =>
-                    npgsqlOptions.MigrationsAssembly("SchedsForums.Infrastructure")) 
+                    npgsqlOptions.MigrationsAssembly("SchedsForums.Infrastructure"))
             );
 
             return services;
@@ -46,27 +44,38 @@ namespace SchedsForums.Infrastructure
             return services;
         }
 
-        private static JwtOptions ConfigureJWTOptions(
-            IConfiguration configuration)
+        public static IServiceCollection ConfigureJWTOptions(
+        this IServiceCollection services,
+        IConfiguration configuration)
         {
-            JwtOptions options = new();
-            configuration.GetSection("Jwt").Bind(options);
-            options.Key = Environment.GetEnvironmentVariable("JWT_KEY")
-                          ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
-            options.Issuer = configuration["Jwt:Issuer"]
-                             ?? throw new NullReferenceException("JWT:Issuer environment variable not set.");
-            options.Audience = configuration["Jwt:Audience"]
-                               ?? throw new NullReferenceException("JWT:Audience environment variable not set.");
-            return options;
+            services.Configure<JwtOptions>(options =>
+            {
+                configuration.GetSection("Jwt").Bind(options);
+                options.Key = Environment.GetEnvironmentVariable("JWT_KEY")
+                    ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
+                options.Issuer = configuration["Jwt:Issuer"]
+                    ?? throw new NullReferenceException("JWT:Issuer environment variable not set.");
+                options.Audience = configuration["Jwt:Audience"]
+                    ?? throw new NullReferenceException("JWT:Audience environment variable not set.");
+            });
+            return services;
         }
 
         public static IServiceCollection AddJwtAuthentication(
-            this IServiceCollection services, 
-            IConfiguration configuration
-            )
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
-            var jwtOptions = ConfigureJWTOptions(configuration);
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+            var jwtOptions = new JwtOptions();
+            configuration.GetSection("Jwt").Bind(jwtOptions);
+            jwtOptions.Key = Environment.GetEnvironmentVariable("JWT_KEY")
+                ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
+            jwtOptions.Issuer = configuration["Jwt:Issuer"]
+                ?? throw new NullReferenceException("JWT:Issuer environment variable not set.");
+            jwtOptions.Audience = configuration["Jwt:Audience"]
+                ?? throw new NullReferenceException("JWT:Audience environment variable not set.");
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,

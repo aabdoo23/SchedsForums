@@ -6,6 +6,7 @@ namespace SchedsForums.API.Filters
 {
     public class CustomExceptionFilter : IExceptionFilter
     {
+        //TODO: Enhance this bullshit
         public void OnException(ExceptionContext context)
         {
             var exception = context.Exception;

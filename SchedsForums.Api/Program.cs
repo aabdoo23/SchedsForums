@@ -20,6 +20,7 @@ namespace SchedsForums.Api
             //Adding Custom services 
             builder.Services.AddInfrastructureServices();
             builder.Services.AddMediatRServicesAndValidators();
+            builder.Services.ConfigureJWTOptions(builder.Configuration);
             builder.Services.AddJwtAuthentication(builder.Configuration);
             builder.Services.AddSchedsForumsDbContext();
             builder.Services.AddInfrastructureRepositories();
