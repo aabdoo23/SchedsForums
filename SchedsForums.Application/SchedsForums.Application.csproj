@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\Admins\" />
+    <Folder Include="Queries\Admins\GetAllModeratorSignUpRequests\" />
     <Folder Include="Queries\Majors\" />
     <Folder Include="Queries\Moderators\" />
     <Folder Include="Queries\Students\" />

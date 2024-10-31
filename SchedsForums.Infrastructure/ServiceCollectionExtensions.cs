@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
+using SchedsForums.Domain.Entities;
 using SchedsForums.Domain.Entities.Users;
 using SchedsForums.Infrastructure.ConfigurationOptions;
 using SchedsForums.Infrastructure.Contexts;
@@ -35,6 +36,8 @@ namespace SchedsForums.Infrastructure
         {
             services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IBaseRepository<Admin>, BaseRepository<Admin>>();
+            services.AddScoped<IBaseRepository<Moderator>, BaseRepository<Moderator>>();
+            services.AddScoped<IBaseRepository<ModeratorSignUpRequest>, BaseRepository<ModeratorSignUpRequest>>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
             return services;
         }
@@ -47,26 +50,31 @@ namespace SchedsForums.Infrastructure
         }
 
         public static IServiceCollection ConfigureJWTOptions(
-        this IServiceCollection services,
-        IConfiguration configuration)
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.Configure<JwtOptions>(options =>
             {
-                configuration.GetSection("Jwt").Bind(options);
                 options.Key = Environment.GetEnvironmentVariable("JWT_KEY")
                     ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
-                options.Issuer = configuration["Jwt:Issuer"]
+                Console.WriteLine(options.Key);
+                options.Issuer = configuration["JwtOptions:Issuer"]
                     ?? throw new NullReferenceException("JWT:Issuer environment variable not set.");
-                options.Audience = configuration["Jwt:Audience"]
+                options.Audience = configuration["JwtOptions:Audience"]
                     ?? throw new NullReferenceException("JWT:Audience environment variable not set.");
+                configuration.GetSection("JwtOptions").Bind(options);
+
             });
             return services;
         }
 
         public static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services,
-            IOptions<JwtOptions> jwtOptions)
+            IConfiguration configuration)
         {
+            services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
+            var serviceProvider = services.BuildServiceProvider();
+            var jwtOptions = serviceProvider.GetRequiredService<IOptions<JwtOptions>>().Value;
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -75,9 +83,9 @@ namespace SchedsForums.Infrastructure
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtOptions.Value.Issuer,
-                    ValidAudience = jwtOptions.Value.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Value.Key))
+                    ValidIssuer = jwtOptions.Issuer,
+                    ValidAudience = jwtOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key))
                 };
             });
 

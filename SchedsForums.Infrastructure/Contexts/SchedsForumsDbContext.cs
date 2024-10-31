@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchedsForums.Domain.Entities;
 using SchedsForums.Domain.Entities.Common;
 using SchedsForums.Domain.Entities.Users;
 namespace SchedsForums.Infrastructure.Contexts
@@ -8,6 +9,8 @@ namespace SchedsForums.Infrastructure.Contexts
         public DbSet<BaseUser> Users { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Moderator> Moderators { get; set; }
+        public DbSet<ModeratorSignUpRequest> ModeratorSignUpRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
