@@ -12,7 +12,7 @@ namespace SchedsForums.Api.Controllers
     {
         private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
-        [HttpPost("CreateAdmin")]
+        [HttpPost]
         public async Task<IActionResult> CreateAdminAsync([FromBody] CreateAdminCommand command)
         {
             var result = await _mediator.Send(command);

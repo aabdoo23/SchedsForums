@@ -23,10 +23,11 @@ namespace SchedsForums.Application.Commands.Admins.Create
                 Username = request.UserName,
                 PasswordHash = hashedPassword
             };
-            await _adminRepository.InsertAsync(admin);
+            admin = await _adminRepository.InsertAsync(admin);
 
             return new CreateAdminResponseDTO
             {
+                Id = admin.Id.ToString(),
                 FullName = admin.Name,
                 UserName = admin.Username,
                 Email = admin.Email

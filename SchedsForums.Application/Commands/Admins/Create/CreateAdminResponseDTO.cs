@@ -1,9 +1,8 @@
-﻿namespace SchedsForums.Application.Commands.Admins.Create
+﻿using SchedsForums.Application.Commands.Common;
+
+namespace SchedsForums.Application.Commands.Admins.Create
 {
-    public class CreateAdminResponseDTO
+    public class CreateAdminResponseDTO : UserResponseDTO
     {
-        public string FullName { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
     }
 }
