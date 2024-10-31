@@ -24,10 +24,11 @@ namespace SchedsForums.Application.Commands.Students.SignUp
                 Username = request.UserName,
                 PasswordHash = hashedPassword
             };
-            await _studentRepository.InsertAsync(student);
+            student = await _studentRepository.InsertAsync(student);
 
             return new StudentSignUpResponseDTO
             {
+                Id = student.Id.ToString(),
                 FullName = student.Name,
                 UserName = student.Username,
                 Email = student.Email

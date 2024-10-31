@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
@@ -33,6 +34,7 @@ namespace SchedsForums.Infrastructure
         public static IServiceCollection AddInfrastructureRepositories(this IServiceCollection services)
         {
             services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
+            services.AddScoped<IBaseRepository<Admin>, BaseRepository<Admin>>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
             return services;
         }
@@ -63,17 +65,8 @@ namespace SchedsForums.Infrastructure
 
         public static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services,
-            IConfiguration configuration)
+            IOptions<JwtOptions> jwtOptions)
         {
-            var jwtOptions = new JwtOptions();
-            configuration.GetSection("Jwt").Bind(jwtOptions);
-            jwtOptions.Key = Environment.GetEnvironmentVariable("JWT_KEY")
-                ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
-            jwtOptions.Issuer = configuration["Jwt:Issuer"]
-                ?? throw new NullReferenceException("JWT:Issuer environment variable not set.");
-            jwtOptions.Audience = configuration["Jwt:Audience"]
-                ?? throw new NullReferenceException("JWT:Audience environment variable not set.");
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -82,9 +75,9 @@ namespace SchedsForums.Infrastructure
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtOptions.Issuer,
-                    ValidAudience = jwtOptions.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key))
+                    ValidIssuer = jwtOptions.Value.Issuer,
+                    ValidAudience = jwtOptions.Value.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Value.Key))
                 };
             });
 
