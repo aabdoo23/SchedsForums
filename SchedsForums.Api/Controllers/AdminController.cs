@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchedsForums.Application.Commands.Admins.Create;
+using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = nameof(Admin))]
     public class AdminController(IMediator mediator) : ControllerBase
     {
         private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
