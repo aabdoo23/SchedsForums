@@ -107,7 +107,7 @@ namespace SchedsForums.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ModeratorSignUpRequests");
+                    b.ToTable("PendingModerators");
                 });
 
             modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Admin", b =>

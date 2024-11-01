@@ -10,8 +10,8 @@ namespace SchedsForums.Application.Commands.Students.SignUp
         IPasswordService passwordService)
         : IRequestHandler<StudentSignUpCommand, StudentSignUpResponseDTO>
     {
-        private readonly IBaseRepository<Student> _studentRepository = studentRepository;
-        private readonly IPasswordService _passwordService = passwordService;
+        private readonly IBaseRepository<Student> _studentRepository = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
+        private readonly IPasswordService _passwordService = passwordService ?? throw new ArgumentNullException(nameof(passwordService));
 
         public async Task<StudentSignUpResponseDTO> Handle(StudentSignUpCommand request, CancellationToken cancellationToken)
         {

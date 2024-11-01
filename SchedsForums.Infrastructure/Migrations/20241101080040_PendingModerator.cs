@@ -20,7 +20,7 @@ namespace SchedsForums.Infrastructure.Migrations
                 table: "Users");
 
             migrationBuilder.DropTable(
-                name: "ModeratorSignUpRequests");
+                name: "PendingModerators");
 
             migrationBuilder.DropIndex(
                 name: "IX_Users_ApprovedById",
@@ -122,7 +122,7 @@ namespace SchedsForums.Infrastructure.Migrations
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "ModeratorSignUpRequests",
+                name: "PendingModerators",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -150,7 +150,7 @@ namespace SchedsForums.Infrastructure.Migrations
                 name: "FK_Users_ModeratorSignUpRequests_ModeratorSignUpRequestId",
                 table: "Users",
                 column: "ModeratorSignUpRequestId",
-                principalTable: "ModeratorSignUpRequests",
+                principalTable: "PendingModerators",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 

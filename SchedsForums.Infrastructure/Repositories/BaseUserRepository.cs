@@ -8,7 +8,7 @@ namespace SchedsForums.Infrastructure.Repositories
 {
     public class BaseUserRepository(SchedsForumsDbContext context) : BaseRepository<BaseUser>(context), IBaseUserRepository
     {
-        private readonly SchedsForumsDbContext _context = context;
+        private readonly SchedsForumsDbContext _context = context ?? throw new ArgumentNullException(nameof(SchedsForumsDbContext));
 
         public async Task<BaseUser> GetBaseUserByEmailAsync(string email)
         {

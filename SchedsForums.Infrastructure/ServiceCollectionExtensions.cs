@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SchedsForums.Application.Interfaces;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
@@ -36,8 +37,9 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IBaseRepository<Admin>, BaseRepository<Admin>>();
             services.AddScoped<IBaseRepository<Moderator>, BaseRepository<Moderator>>();
-            services.AddScoped<IBaseRepository<PendingModerator>, BaseRepository<PendingModerator>>();
+            services.AddScoped<IPendingModeratorRepository, PendingModeratorRepository>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
+
             return services;
         }
 
@@ -45,6 +47,7 @@ namespace SchedsForums.Infrastructure
         {
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IJWTService, JWTService>();
+            
             return services;
         }
 
@@ -63,6 +66,7 @@ namespace SchedsForums.Infrastructure
                 configuration.GetSection(JWTConstants.JWT_Options).Bind(options);
 
             });
+
             return services;
         }
 
