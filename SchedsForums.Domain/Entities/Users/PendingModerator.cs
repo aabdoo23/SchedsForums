@@ -9,10 +9,4 @@ namespace SchedsForums.Domain.Entities.Users
         public virtual Admin? StatusUpdatedBy { get; set; }
         public ModeratorStatus Status { get; set; }
     }
-    public enum ModeratorStatus
-    {
-        Pending,
-        Approved,
-        Rejected
-    }
 }
