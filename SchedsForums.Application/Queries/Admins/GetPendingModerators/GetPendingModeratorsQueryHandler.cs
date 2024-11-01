@@ -1,29 +1,30 @@
 ﻿using MediatR;
-using SchedsForums.Application.Interfaces;
+using SchedsForums.Application.Interfaces.Common;
+using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Application.Queries.Admins.GetPendingModerators
 {
     public class GetPendingModeratorsQueryHandler(
-        IPendingModeratorRepository repository)
+        IBaseRepository<PendingModerator> repository)
         : IRequestHandler<GetPendingModeratorsQuery, GetPendingModeratorsQueryResponseDTO>
     {
-        private readonly IPendingModeratorRepository _repository = repository 
-            ?? throw new ArgumentNullException(nameof(IPendingModeratorRepository));
+        private readonly IBaseRepository<PendingModerator> _pendingModeratorsRepository = repository
+            ?? throw new ArgumentNullException(nameof(IBaseRepository<PendingModerator>));
 
         public async Task<GetPendingModeratorsQueryResponseDTO> Handle(
             GetPendingModeratorsQuery request,
             CancellationToken cancellationToken)
         {
-            int pageNumber = request.PageNumber - 1;
-            int pageSize = request.PageSize;
-            int start = pageNumber * pageSize;
-            int end = start + pageSize - 1;
-            var pendingModeratorsQueryResult = await _repository.GetFromTo(start, end);
+            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetFromTo(request.PageNumber, request.PageSize);
+            var totalCount = await _pendingModeratorsRepository.GetTotalCount();
 
             return new GetPendingModeratorsQueryResponseDTO
             {
                 PendingModerators = pendingModeratorsQueryResult,
-                ReturnedCount = pendingModeratorsQueryResult.Count()
+                ReturnedCount = pendingModeratorsQueryResult.Count(),
+                TotalCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
             };
         }
     }

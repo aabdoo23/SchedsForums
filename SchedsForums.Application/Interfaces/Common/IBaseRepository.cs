@@ -9,5 +9,7 @@ namespace SchedsForums.Application.Interfaces.Common
         Task<T> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(string id);
+        Task<IEnumerable<T>> GetFromTo(int pageNumber, int pageSize);
+        Task<int> GetTotalCount();
     }
 }

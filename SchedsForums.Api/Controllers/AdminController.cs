@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchedsForums.Application.Commands.Admins.Create;
-using SchedsForums.Application.Queries.Admins.GetModeratorSignUpRequests;
+using SchedsForums.Application.Queries.Admins.GetPendingModerators;
 using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Api.Controllers

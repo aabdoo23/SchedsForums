@@ -37,7 +37,7 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IBaseRepository<Admin>, BaseRepository<Admin>>();
             services.AddScoped<IBaseRepository<Moderator>, BaseRepository<Moderator>>();
-            services.AddScoped<IPendingModeratorRepository, PendingModeratorRepository>();
+            services.AddScoped<IBaseRepository<PendingModerator>, BaseRepository<PendingModerator>>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
 
             return services;
@@ -64,7 +64,6 @@ namespace SchedsForums.Infrastructure
                 options.Audience = configuration[JWTConstants.JWT_AUDIENCE]
                     ?? throw new NullReferenceException(nameof(JWTConstants.JWT_AUDIENCE));
                 configuration.GetSection(JWTConstants.JWT_Options).Bind(options);
-
             });
 
             return services;
