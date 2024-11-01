@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SchedsForums.Application.Interfaces;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
@@ -7,11 +6,11 @@ using SchedsForums.Domain.Entities.Users;
 namespace SchedsForums.Application.Commands.Moderators.SignUp
 {
     public class ModeratorSignUpCommandHandler(
-        IPendingModeratorRepository moderatorSignUpRequestRepository,
+        IBaseRepository<PendingModerator> moderatorSignUpRequestRepository,
         IPasswordService passwordService)
         : IRequestHandler<ModeratorSignUpCommand, ModeratorSignUpResponseDTO>
     {
-        private readonly IPendingModeratorRepository _moderatorSignUpRequestRepository = moderatorSignUpRequestRepository 
+        private readonly IBaseRepository<PendingModerator> _moderatorSignUpRequestRepository = moderatorSignUpRequestRepository
             ?? throw new ArgumentNullException(nameof(moderatorSignUpRequestRepository));
         private readonly IPasswordService _passwordService = passwordService;
 
