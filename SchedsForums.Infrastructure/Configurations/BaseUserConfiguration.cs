@@ -13,7 +13,8 @@ namespace SchedsForums.Infrastructure.Configurations
                 .HasDiscriminator<string>("UserType")
                 .HasValue<Student>(nameof(Student))
                 .HasValue<Admin>(nameof(Admin))
-                .HasValue<Moderator>(nameof(Moderator));
+                .HasValue<Moderator>(nameof(Moderator))
+                .HasValue<PendingModerator>(nameof(PendingModerator));
         }
     }
 }

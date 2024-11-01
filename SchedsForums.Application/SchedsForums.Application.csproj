@@ -23,12 +23,12 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\Admins\GetAllModeratorSignUpRequests\" />
+  <!--<ItemGroup>-->
+    <!--<Folder Include="Queries\Admins\GetAllModeratorSignUpRequests\" />
     <Folder Include="Queries\Majors\" />
     <Folder Include="Queries\Moderators\" />
     <Folder Include="Queries\Students\" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\SchedsForums.Domain\SchedsForums.Domain.csproj" />

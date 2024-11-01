@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
-using SchedsForums.Domain.Entities;
 using SchedsForums.Domain.Entities.Users;
 using SchedsForums.Infrastructure.ConfigurationOptions;
 using SchedsForums.Infrastructure.Contexts;
@@ -37,7 +36,7 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IBaseRepository<Admin>, BaseRepository<Admin>>();
             services.AddScoped<IBaseRepository<Moderator>, BaseRepository<Moderator>>();
-            services.AddScoped<IBaseRepository<ModeratorSignUpRequest>, BaseRepository<ModeratorSignUpRequest>>();
+            services.AddScoped<IBaseRepository<PendingModerator>, BaseRepository<PendingModerator>>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
             return services;
         }
@@ -55,14 +54,13 @@ namespace SchedsForums.Infrastructure
         {
             services.Configure<JwtOptions>(options =>
             {
-                options.Key = Environment.GetEnvironmentVariable("JWT_KEY")
-                    ?? throw new NullReferenceException("JWT_KEY environment variable not set.");
-                Console.WriteLine(options.Key);
-                options.Issuer = configuration["JwtOptions:Issuer"]
-                    ?? throw new NullReferenceException("JWT:Issuer environment variable not set.");
-                options.Audience = configuration["JwtOptions:Audience"]
-                    ?? throw new NullReferenceException("JWT:Audience environment variable not set.");
-                configuration.GetSection("JwtOptions").Bind(options);
+                options.Key = Environment.GetEnvironmentVariable(JWTConstants.JWT_KEY)
+                    ?? throw new NullReferenceException(nameof(JWTConstants.JWT_KEY));
+                options.Issuer = configuration[JWTConstants.JWT_ISSUER]
+                    ?? throw new NullReferenceException(nameof(JWTConstants.JWT_ISSUER));
+                options.Audience = configuration[JWTConstants.JWT_AUDIENCE]
+                    ?? throw new NullReferenceException(nameof(JWTConstants.JWT_AUDIENCE));
+                configuration.GetSection(JWTConstants.JWT_Options).Bind(options);
 
             });
             return services;
@@ -72,7 +70,7 @@ namespace SchedsForums.Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
+            services.Configure<JwtOptions>(configuration.GetSection(JWTConstants.JWT_Options));
             var serviceProvider = services.BuildServiceProvider();
             var jwtOptions = serviceProvider.GetRequiredService<IOptions<JwtOptions>>().Value;
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
