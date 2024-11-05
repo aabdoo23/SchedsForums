@@ -17,17 +17,22 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(Guid id)
         {
-            await _dbSet.Where(e => e.Id.ToString() == id).ExecuteDeleteAsync();
+            await _dbSet.Where(e => e.Id == id).ExecuteDeleteAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
         }
 
         public async Task<T?> GetByIdAsync(string id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<T?> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }
@@ -39,16 +44,15 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public async Task<int> GetTotalCount()
+        public virtual async Task<int> GetTotalCount()
         {
             return await _dbSet.CountAsync();
         }
 
-        public async Task<IEnumerable<T>> GetFromTo(int pageNumber, int pageSize)
+        public virtual async Task<IEnumerable<T>> GetFromTo(int pageNumber, int pageSize)
         {
             return await _dbSet
-                .AsNoTracking() //is this necessary?
-                .OrderBy(x => x.Id) //by updatedAt better?
+                .OrderBy(x => x.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();

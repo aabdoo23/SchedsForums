@@ -1,15 +1,14 @@
 ﻿using MediatR;
-using SchedsForums.Application.Interfaces.Common;
-using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Application.Interfaces.Repositories;
 
 namespace SchedsForums.Application.Queries.Admins.GetPendingModerators
 {
     public class GetPendingModeratorsQueryHandler(
-        IBaseRepository<PendingModerator> repository)
+        IPendingModeratorRepository repository)
         : IRequestHandler<GetPendingModeratorsQuery, GetPendingModeratorsQueryResponseDTO>
     {
-        private readonly IBaseRepository<PendingModerator> _pendingModeratorsRepository = repository
-            ?? throw new ArgumentNullException(nameof(IBaseRepository<PendingModerator>));
+        private readonly IPendingModeratorRepository _pendingModeratorsRepository = repository
+            ?? throw new ArgumentNullException(nameof(repository));
 
         public async Task<GetPendingModeratorsQueryResponseDTO> Handle(
             GetPendingModeratorsQuery request,
