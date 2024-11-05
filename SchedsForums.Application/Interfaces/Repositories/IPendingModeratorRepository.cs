@@ -5,6 +5,5 @@ namespace SchedsForums.Application.Interfaces.Repositories
 {
     public interface IPendingModeratorRepository : IBaseRepository<PendingModerator>
     {
-        Task<IEnumerable<PendingModerator>> GetFromTo(int pageNumber, int pageSize);
     }
 }

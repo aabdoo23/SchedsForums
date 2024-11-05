@@ -36,7 +36,6 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<IBaseRepository<Admin>, BaseRepository<Admin>>();
             services.AddScoped<IBaseRepository<Moderator>, BaseRepository<Moderator>>();
-            //services.AddScoped<IBaseRepository<PendingModerator>, BaseRepository<PendingModerator>>();
             services.AddScoped<IPendingModeratorRepository, PendingModeratorRepository>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
 
