@@ -24,13 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\Admins\" />
-    <Folder Include="Queries\Majors\" />
-    <Folder Include="Queries\Moderators\" />
-    <Folder Include="Queries\Students\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SchedsForums.Domain\SchedsForums.Domain.csproj" />
   </ItemGroup>
 </Project>

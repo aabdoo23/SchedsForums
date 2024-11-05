@@ -12,8 +12,8 @@ using SchedsForums.Infrastructure.Contexts;
 namespace SchedsForums.Infrastructure.Migrations
 {
     [DbContext(typeof(SchedsForumsDbContext))]
-    [Migration("20241029114409_login")]
-    partial class login
+    [Migration("20241101132322_PendingModerator")]
+    partial class PendingModerator
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,8 +51,8 @@ namespace SchedsForums.Infrastructure.Migrations
 
                     b.Property<string>("UserType")
                         .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("character varying(8)");
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -67,11 +67,56 @@ namespace SchedsForums.Infrastructure.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Admin", b =>
+                {
+                    b.HasBaseType("SchedsForums.Domain.Entities.Common.BaseUser");
+
+                    b.HasDiscriminator().HasValue("Admin");
+                });
+
+            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.PendingModerator", b =>
+                {
+                    b.HasBaseType("SchedsForums.Domain.Entities.Common.BaseUser");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("StatusUpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("StatusUpdatedById")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("StatusUpdatedById");
+
+                    b.HasDiscriminator().HasValue("PendingModerator");
+                });
+
             modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Student", b =>
                 {
                     b.HasBaseType("SchedsForums.Domain.Entities.Common.BaseUser");
 
                     b.HasDiscriminator().HasValue("Student");
+                });
+
+            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Moderator", b =>
+                {
+                    b.HasBaseType("SchedsForums.Domain.Entities.Users.PendingModerator");
+
+                    b.HasDiscriminator().HasValue("Moderator");
+                });
+
+            modelBuilder.Entity("SchedsForums.Domain.Entities.Users.PendingModerator", b =>
+                {
+                    b.HasOne("SchedsForums.Domain.Entities.Users.Admin", "StatusUpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("StatusUpdatedById");
+
+                    b.Navigation("StatusUpdatedBy");
                 });
 #pragma warning restore 612, 618
         }

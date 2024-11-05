@@ -8,6 +8,8 @@ namespace SchedsForums.Infrastructure.Contexts
         public DbSet<BaseUser> Users { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Moderator> Moderators { get; set; }
+        public DbSet<PendingModerator> PendingModerators { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
