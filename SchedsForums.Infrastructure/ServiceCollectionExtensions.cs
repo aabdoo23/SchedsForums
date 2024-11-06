@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
+using SchedsForums.Domain.Entities;
 using SchedsForums.Domain.Entities.Users;
 using SchedsForums.Infrastructure.ConfigurationOptions;
 using SchedsForums.Infrastructure.Contexts;
@@ -38,6 +39,7 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<Moderator>, BaseRepository<Moderator>>();
             services.AddScoped<IPendingModeratorRepository, PendingModeratorRepository>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
+            services.AddScoped<IBaseRepository<Course>, BaseRepository<Course>>();
 
             return services;
         }

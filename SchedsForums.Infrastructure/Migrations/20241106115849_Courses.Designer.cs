@@ -12,8 +12,8 @@ using SchedsForums.Infrastructure.Contexts;
 namespace SchedsForums.Infrastructure.Migrations
 {
     [DbContext(typeof(SchedsForumsDbContext))]
-    [Migration("20241101132322_PendingModerator")]
-    partial class PendingModerator
+    [Migration("20241106115849_Courses")]
+    partial class Courses
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,31 @@ namespace SchedsForums.Infrastructure.Migrations
                     b.HasDiscriminator<string>("UserType").HasValue("BaseUser");
 
                     b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("SchedsForums.Domain.Entities.Course", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CourseCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("SchedsForums.Domain.Entities.Users.Admin", b =>

@@ -34,7 +34,7 @@ namespace SchedsForums.Application.Commands.Moderators.SignUp
 
             return new ModeratorSignUpResponseDTO
             {
-                Id = pendingModerator.Id.ToString(),
+                Id = pendingModerator.Id,
                 FullName = pendingModerator.Name,
                 UserName = pendingModerator.Username,
                 Email = pendingModerator.Email,
