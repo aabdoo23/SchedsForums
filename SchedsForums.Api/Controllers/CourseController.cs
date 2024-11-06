@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SchedsForums.Application.Commands.Courses.CreateCourse;
+using SchedsForums.Application.Commands.Courses.Create;
 using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Api.Controllers

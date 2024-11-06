@@ -1,6 +1,6 @@
 ﻿using SchedsForums.Application.Commands.Common;
 
-namespace SchedsForums.Application.Commands.Courses.CreateCourse
+namespace SchedsForums.Application.Commands.Courses.Create
 {
     public class CreateCourseCommandResponseDTO : BaseResponseDTO
     {

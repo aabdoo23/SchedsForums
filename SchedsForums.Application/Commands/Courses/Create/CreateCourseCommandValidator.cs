@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SchedsForums.Application.Commands.Courses.CreateCourse
+namespace SchedsForums.Application.Commands.Courses.Create
 {
     public class CreateCourseCommandValidator : AbstractValidator<CreateCourseCommand>
     {

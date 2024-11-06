@@ -2,7 +2,7 @@
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Domain.Entities;
 
-namespace SchedsForums.Application.Commands.Courses.CreateCourse
+namespace SchedsForums.Application.Commands.Courses.Create
 {
     public class CreateCourseCommandHandler(IBaseRepository<Course> courseRepository) : IRequestHandler<CreateCourseCommand, CreateCourseCommandResponseDTO>
     {
