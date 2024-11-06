@@ -10,7 +10,7 @@ namespace SchedsForums.Infrastructure.Repositories
     {
         private readonly SchedsForumsDbContext _context = context 
             ?? throw new ArgumentNullException(nameof(SchedsForumsDbContext));
-        public override async Task<IEnumerable<PendingModerator>> GetFromTo(int pageNumber, int pageSize)
+        public override async Task<IEnumerable<PendingModerator>> GetPaginated(int pageNumber, int pageSize)
         {
             return await _context.PendingModerators
                 .Where(pm => !(pm is Moderator))

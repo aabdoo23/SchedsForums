@@ -49,7 +49,7 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return await _dbSet.CountAsync();
         }
 
-        public virtual async Task<IEnumerable<T>> GetFromTo(int pageNumber, int pageSize)
+        public virtual async Task<IEnumerable<T>> GetPaginated(int pageNumber, int pageSize)
         {
             return await _dbSet
                 .OrderBy(x => x.Id)
