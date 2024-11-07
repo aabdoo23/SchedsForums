@@ -1,4 +1,4 @@
-﻿using SchedsForums.Application.Queries.Common;
+﻿using SchedsForums.Application.Queries.Common.DTOs;
 using SchedsForums.Domain.Entities.Common;
 
 namespace SchedsForums.Application.Interfaces.Common
@@ -11,8 +11,6 @@ namespace SchedsForums.Application.Interfaces.Common
         Task<T> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(Guid id);
-        Task<IEnumerable<T>> GetPaginatedContentAsync(int pageNumber, int pageSize);
-        Task<BaseGetPaginatedResponseDTO<T>> GetPaginatedAsync(int pageNumber, int pageSize);
-        Task<int> GetTotalCountAsync();
+        Task<BaseGetPaginatedEntityDTO<T>> GetPaginatedContentAsync(IQueryable<T> queryable, int pageNumber, int pageSize);
     }
 }

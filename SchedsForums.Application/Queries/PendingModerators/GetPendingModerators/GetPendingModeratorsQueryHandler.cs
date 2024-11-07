@@ -14,7 +14,7 @@ namespace SchedsForums.Application.Queries.PendingModerators.GetPendingModerator
             GetPendingModeratorsQuery request,
             CancellationToken cancellationToken)
         {
-            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetPaginatedAsync(
+            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetPaginatedPendingModeratorsAsync(
                 request.PageNumber,
                 request.PageSize);
 

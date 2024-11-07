@@ -1,8 +1,6 @@
-﻿using SchedsForums.Domain.Entities.Common;
-
-namespace SchedsForums.Application.Queries.Common
+﻿namespace SchedsForums.Application.Queries.Common.DTOs
 {
-    public class BaseGetPaginatedResponseDTO<T> where T : BaseEntity
+    public abstract class BaseGetPaginatedDTO<T>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }

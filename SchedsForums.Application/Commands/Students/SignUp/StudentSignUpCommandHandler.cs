@@ -28,7 +28,7 @@ namespace SchedsForums.Application.Commands.Students.SignUp
 
             return new StudentSignUpResponseDTO
             {
-                Id = student.Id.ToString(),
+                Id = student.Id,
                 FullName = student.Name,
                 UserName = student.Username,
                 Email = student.Email
