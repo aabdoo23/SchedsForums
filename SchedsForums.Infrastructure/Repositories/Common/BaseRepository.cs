@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchedsForums.Application.Interfaces.Common;
+using SchedsForums.Application.Queries.Common;
 using SchedsForums.Domain.Entities.Common;
 using SchedsForums.Infrastructure.Contexts;
 
@@ -44,18 +45,32 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public virtual async Task<int> GetTotalCount()
+        public virtual async Task<int> GetTotalCountAsync()
         {
             return await _dbSet.CountAsync();
         }
 
-        public virtual async Task<IEnumerable<T>> GetPaginated(int pageNumber, int pageSize)
+        public virtual async Task<IEnumerable<T>> GetPaginatedContentAsync(int pageNumber, int pageSize)
         {
             return await _dbSet
                 .OrderBy(x => x.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+        }
+
+        public virtual async Task<BaseGetPaginatedResponseDTO<T>> GetPaginatedAsync(int pageNumber, int pageSize)
+        {
+            var totalCount = await GetTotalCountAsync();
+            var data = await GetPaginatedContentAsync(pageNumber, pageSize);
+            return new BaseGetPaginatedResponseDTO<T>
+            {
+                Data = data,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                ReturnedCount = data.Count()
+            };
         }
     }
 }

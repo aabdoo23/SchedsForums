@@ -14,16 +14,17 @@ namespace SchedsForums.Application.Queries.PendingModerators.GetPendingModerator
             GetPendingModeratorsQuery request,
             CancellationToken cancellationToken)
         {
-            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetPaginated(request.PageNumber, request.PageSize);
-            var totalCount = await _pendingModeratorsRepository.GetTotalCount();
+            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetPaginatedAsync(
+                request.PageNumber,
+                request.PageSize);
 
             return new GetPendingModeratorsQueryResponseDTO
             {
-                Content = pendingModeratorsQueryResult,
-                ReturnedCount = pendingModeratorsQueryResult.Count(),
-                TotalCount = totalCount,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize,
+                Data = pendingModeratorsQueryResult.Data,
+                ReturnedCount = pendingModeratorsQueryResult.ReturnedCount,
+                TotalCount = pendingModeratorsQueryResult.TotalCount,
+                PageNumber = pendingModeratorsQueryResult.PageNumber,
+                PageSize = pendingModeratorsQueryResult.PageSize
             };
         }
     }
