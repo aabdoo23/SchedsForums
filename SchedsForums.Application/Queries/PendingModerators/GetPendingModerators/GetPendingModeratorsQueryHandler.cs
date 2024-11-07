@@ -21,7 +21,6 @@ namespace SchedsForums.Application.Queries.PendingModerators.GetPendingModerator
             return new GetPendingModeratorsQueryResponseDTO
             {
                 Data = pendingModeratorsQueryResult.Data,
-                ReturnedCount = pendingModeratorsQueryResult.ReturnedCount,
                 TotalCount = pendingModeratorsQueryResult.TotalCount,
                 PageNumber = pendingModeratorsQueryResult.PageNumber,
                 PageSize = pendingModeratorsQueryResult.PageSize

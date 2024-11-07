@@ -45,7 +45,7 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public virtual async Task<BaseGetPaginatedEntityDTO<T>> GetPaginatedContentAsync(IQueryable<T> queryable, int pageNumber, int pageSize)
+        public virtual async Task<PaginatedEntityDTO<T>> GetPaginatedContentAsync(IQueryable<T> queryable, int pageNumber, int pageSize)
         {
             var totalCount = await queryable.CountAsync();
 
@@ -56,13 +56,12 @@ namespace SchedsForums.Infrastructure.Repositories.Common
                 .ToListAsync();
             var returnedCount = data.Count;
 
-            return new BaseGetPaginatedEntityDTO<T>
+            return new PaginatedEntityDTO<T>
             {
                 Data = data,
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalCount = totalCount,
-                ReturnedCount = returnedCount
             };
         }
     }

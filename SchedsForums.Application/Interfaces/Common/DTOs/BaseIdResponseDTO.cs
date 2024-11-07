@@ -1,6 +1,6 @@
 ﻿namespace SchedsForums.Application.Interfaces.Common.DTOs
 {
-    public class BaseResponseDTO
+    public class BaseIdResponseDTO
     {
         public Guid Id { get; set; }
     }

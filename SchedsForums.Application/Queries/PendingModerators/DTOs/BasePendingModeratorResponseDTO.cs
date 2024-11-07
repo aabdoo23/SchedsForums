@@ -3,7 +3,7 @@ using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Application.Queries.PendingModerators.DTOs
 {
-    public class BasePendingModeratorResponseDTO : BaseResponseDTO
+    public class BasePendingModeratorResponseDTO : BaseIdResponseDTO
     {
         public string FullName { get; set; }
         public string UserName { get; set; }

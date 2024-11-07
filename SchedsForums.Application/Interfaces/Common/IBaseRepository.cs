@@ -11,6 +11,6 @@ namespace SchedsForums.Application.Interfaces.Common
         Task<T> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(Guid id);
-        Task<BaseGetPaginatedEntityDTO<T>> GetPaginatedContentAsync(IQueryable<T> queryable, int pageNumber, int pageSize);
+        Task<PaginatedEntityDTO<T>> GetPaginatedContentAsync(IQueryable<T> queryable, int pageNumber, int pageSize);
     }
 }
