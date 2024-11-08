@@ -54,7 +54,6 @@ namespace SchedsForums.Infrastructure.Repositories.Common
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
-            var returnedCount = data.Count;
 
             return new PaginatedEntityDTO<T>
             {
