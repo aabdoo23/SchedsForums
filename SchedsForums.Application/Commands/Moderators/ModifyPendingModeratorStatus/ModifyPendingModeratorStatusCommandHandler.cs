@@ -29,7 +29,7 @@ namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorSta
             var adminId = _currentUserService.GetUserId();
             var admin = await _adminRepository.GetByIdAsync(adminId);
             var pendingModerator = await _pendingModeratorRepository.GetByIdAsync(request.ModeratorId)
-                ?? throw new KeyNotFoundException(nameof(request.ModeratorId));
+                ?? throw new KeyNotFoundException(nameof(request.ModeratorId)); // instead of calling it in the validator
 
             pendingModerator.Status = request.Status;
             pendingModerator.StatusUpdatedAt = DateTime.UtcNow;
@@ -51,6 +51,10 @@ namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorSta
                 };
                 await _moderatorRepository.InsertAsync(moderator);
                 await _pendingModeratorRepository.DeleteAsync(pendingModerator.Id);
+
+                //await _pendingModeratorRepository.PromoteToModeratorAsync(pendingModerator.Id);
+                //uncomment if .Property<string>("UserType").Metadata.IsReadOnlyAfterSave = false; is configured and migration is applied
+
             }
             else
             {

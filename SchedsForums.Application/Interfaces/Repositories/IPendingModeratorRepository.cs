@@ -8,5 +8,6 @@ namespace SchedsForums.Application.Interfaces.Repositories
     public interface IPendingModeratorRepository : IBaseRepository<PendingModerator>
     {
         public Task<PaginatedResponseDTO<BasePendingModeratorResponseDTO>> GetPaginatedPendingModeratorsAsync(int pageNumber, int pageSize);
+        public Task PromoteToModeratorAsync(Guid pendingModeratorId);
     }
 }
