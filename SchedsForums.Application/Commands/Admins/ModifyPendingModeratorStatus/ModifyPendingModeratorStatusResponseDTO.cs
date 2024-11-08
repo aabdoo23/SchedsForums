@@ -1,5 +1,5 @@
 ﻿using SchedsForums.Application.Commands.Common;
-using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Domain.Entities.Users.Common;
 
 namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
 {

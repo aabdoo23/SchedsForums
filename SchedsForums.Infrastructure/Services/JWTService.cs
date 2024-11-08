@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SchedsForums.Application.Interfaces.Services;
-using SchedsForums.Domain.Entities.Common;
+using SchedsForums.Domain.Entities.Users.Common;
 using SchedsForums.Infrastructure.ConfigurationOptions;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;

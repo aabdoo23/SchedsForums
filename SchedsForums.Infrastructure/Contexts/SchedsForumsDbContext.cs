@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchedsForums.Domain.Entities;
 using SchedsForums.Domain.Entities.Common;
+using SchedsForums.Domain.Entities.Forums;
+using SchedsForums.Domain.Entities.Forums.Common;
 using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Domain.Entities.Users.Common;
 namespace SchedsForums.Infrastructure.Contexts
 {
     public class SchedsForumsDbContext(DbContextOptions<SchedsForumsDbContext> options) : DbContext(options)
@@ -11,9 +14,16 @@ namespace SchedsForums.Infrastructure.Contexts
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Moderator> Moderators { get; set; }
         public DbSet<PendingModerator> PendingModerators { get; set; }
+        
         public DbSet<Course> Courses { get; set; }
         public DbSet<Major> Majors { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
+
+        public DbSet<BaseForum> Forums { get; set; }
+        public DbSet<GeneralForum> GeneralForums { get; set; }
+        public DbSet<CourseForum> CourseForums { get; set; }
+        public DbSet<MajorForum> MajorForums { get; set; }
+        public DbSet<FacultyForum> FacultyForums { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

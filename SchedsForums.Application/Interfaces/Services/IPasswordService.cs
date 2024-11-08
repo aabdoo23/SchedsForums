@@ -1,4 +1,4 @@
-﻿using SchedsForums.Domain.Entities.Common;
+﻿using SchedsForums.Domain.Entities.Users.Common;
 
 namespace SchedsForums.Application.Interfaces.Services
 {

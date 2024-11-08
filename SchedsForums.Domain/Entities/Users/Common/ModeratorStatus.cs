@@ -1,4 +1,4 @@
-﻿namespace SchedsForums.Domain.Entities.Users
+﻿namespace SchedsForums.Domain.Entities.Users.Common
 {
     public enum ModeratorStatus
     {
