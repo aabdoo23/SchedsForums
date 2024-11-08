@@ -4,6 +4,7 @@ namespace SchedsForums.Domain.Entities.Forums
 {
     public class FacultyForum : BaseForum
     {
+        public Guid FacultyId { get; set; }
         public virtual Faculty Faculty { get; set; }
     }
 }

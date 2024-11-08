@@ -1,12 +1,8 @@
-﻿using SchedsForums.Application.Commands.Common;
+﻿using SchedsForums.Application.Commands.Forums.Common;
 
 namespace SchedsForums.Application.Commands.Forums.GeneralForums.Create
 {
-    public class CreateGeneralForumCommandResponseDTO : BaseResponseDTO
+    public class CreateGeneralForumCommandResponseDTO : CreateForumBaseResponseDTO
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public virtual IEnumerable<string> Guidelines { get; set; }
-        public Guid CreatedById { get; set; }
     }
 }
