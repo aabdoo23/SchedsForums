@@ -27,7 +27,7 @@ namespace SchedsForums.Application.Commands.Admins.Create
 
             return new CreateAdminResponseDTO
             {
-                Id = admin.Id.ToString(),
+                Id = admin.Id,
                 FullName = admin.Name,
                 UserName = admin.Username,
                 Email = admin.Email
