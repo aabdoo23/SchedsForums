@@ -1,6 +1,6 @@
 ﻿using SchedsForums.Domain.Entities.Users;
 
-namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
+namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorStatus
 {
     public class ModifyPendingModeratorStatusResponseDTO
     {

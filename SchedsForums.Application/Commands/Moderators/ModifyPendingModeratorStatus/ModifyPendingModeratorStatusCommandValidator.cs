@@ -3,9 +3,9 @@ using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Domain.Entities.Users;
 
-namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
+namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorStatus
 {
-    public class ModifyPendingModeratorStatusCommandValidator 
+    public class ModifyPendingModeratorStatusCommandValidator
         : AbstractValidator<ModifyPendingModeratorStatusCommand>
     {
         private readonly IPendingModeratorRepository _pendingModeratorRepository;
@@ -17,7 +17,7 @@ namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
             RuleFor(x => x.ModeratorId.ToString())
                 .NotEmpty()
                 .MinimumLength(20);
-                //.Must(IsValidModeratorId);
+            //.Must(IsValidModeratorId);
             RuleFor(x => x.Status)
                 .IsInEnum();
         }

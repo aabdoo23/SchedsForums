@@ -4,13 +4,13 @@ using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
 
-namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
+namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorStatus
 {
     public class ModifyPendingModeratorStatusCommandHandler(
         ICurrentUserService currentUserService,
         IPendingModeratorRepository pendingModeratorRepository,
         IBaseRepository<Moderator> moderatorRepository,
-        IBaseRepository<Admin> adminRepository) : 
+        IBaseRepository<Admin> adminRepository) :
         IRequestHandler<ModifyPendingModeratorStatusCommand, ModifyPendingModeratorStatusResponseDTO>
     {
         private readonly ICurrentUserService _currentUserService = currentUserService
@@ -23,7 +23,7 @@ namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
             ?? throw new ArgumentNullException(nameof(adminRepository));
 
         public async Task<ModifyPendingModeratorStatusResponseDTO> Handle(
-            ModifyPendingModeratorStatusCommand request, 
+            ModifyPendingModeratorStatusCommand request,
             CancellationToken cancellationToken)
         {
             var adminId = _currentUserService.GetUserId();
@@ -47,7 +47,7 @@ namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
                     CreatedAt = pendingModerator.CreatedAt,
                     StatusUpdatedAt = DateTime.UtcNow,
                     StatusUpdatedBy = admin,
-                    Reason = pendingModerator.Reason   
+                    Reason = pendingModerator.Reason
                 };
                 await _moderatorRepository.InsertAsync(moderator);
                 await _pendingModeratorRepository.DeleteAsync(pendingModerator.Id);
