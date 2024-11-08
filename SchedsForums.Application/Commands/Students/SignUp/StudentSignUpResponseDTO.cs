@@ -1,8 +1,8 @@
-﻿using SchedsForums.Application.Commands.Common.User;
+﻿using SchedsForums.Application.Commands.Common;
 
 namespace SchedsForums.Application.Commands.Students.SignUp
 {
-    public class StudentSignUpResponseDTO: UserResponseDTO
+    public class StudentSignUpResponseDTO : UserResponseDTO
     {
     }
 }

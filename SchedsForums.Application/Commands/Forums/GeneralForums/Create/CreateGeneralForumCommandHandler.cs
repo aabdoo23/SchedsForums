@@ -28,9 +28,9 @@ namespace SchedsForums.Application.Commands.Forums.GeneralForums.Create
                 Title = newGeneralForum.Title,
                 Description = newGeneralForum.Description,
                 Guidelines = newGeneralForum.Guidelines,
-                CreatedById = newGeneralForum.CreatedById
+                CreatedById = newGeneralForum.CreatedById,
+                Id = newGeneralForum.Id
             };
-
         }
     }
 }
