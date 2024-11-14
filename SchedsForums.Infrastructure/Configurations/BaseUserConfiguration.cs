@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SchedsForums.Domain.Entities.Common;
 using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Domain.Entities.Users.Common;
 
 namespace SchedsForums.Infrastructure.Configurations
 {

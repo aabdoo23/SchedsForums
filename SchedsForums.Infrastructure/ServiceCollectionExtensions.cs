@@ -8,6 +8,7 @@ using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities;
+using SchedsForums.Domain.Entities.Forums;
 using SchedsForums.Domain.Entities.Users;
 using SchedsForums.Infrastructure.ConfigurationOptions;
 using SchedsForums.Infrastructure.Contexts;
@@ -42,6 +43,10 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<Course>, BaseRepository<Course>>();
             services.AddScoped<IBaseRepository<Major>, BaseRepository<Major>>();
             services.AddScoped<IBaseRepository<Faculty>, BaseRepository<Faculty>>();
+            services.AddScoped<IBaseRepository<GeneralForum>, BaseRepository<GeneralForum>>();
+            services.AddScoped<IBaseRepository<CourseForum>, BaseRepository<CourseForum>>();
+            services.AddScoped<IBaseRepository<MajorForum>, BaseRepository<MajorForum>>();
+            services.AddScoped<IBaseRepository<FacultyForum>, BaseRepository<FacultyForum>>();
 
             return services;
         }

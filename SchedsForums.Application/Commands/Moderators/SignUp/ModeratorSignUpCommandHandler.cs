@@ -3,6 +3,7 @@ using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Domain.Entities.Users.Common;
 
 namespace SchedsForums.Application.Commands.Moderators.SignUp
 {

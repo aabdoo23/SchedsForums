@@ -1,5 +1,5 @@
 ﻿using SchedsForums.Application.Interfaces.Services;
-using SchedsForums.Domain.Entities.Common;
+using SchedsForums.Domain.Entities.Users.Common;
 
 namespace SchedsForums.Infrastructure.Services
 {

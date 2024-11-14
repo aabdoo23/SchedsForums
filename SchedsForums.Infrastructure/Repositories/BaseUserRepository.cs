@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchedsForums.Application.Interfaces.Repositories;
-using SchedsForums.Domain.Entities.Common;
+using SchedsForums.Domain.Entities.Users.Common;
 using SchedsForums.Infrastructure.Contexts;
 using SchedsForums.Infrastructure.Repositories.Common;
 
