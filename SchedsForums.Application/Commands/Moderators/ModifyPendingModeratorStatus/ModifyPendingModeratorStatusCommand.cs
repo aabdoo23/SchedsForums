@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SchedsForums.Domain.Entities.Users.Common;
 
-namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
+namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorStatus
 {
     public class ModifyPendingModeratorStatusCommand : IRequest<ModifyPendingModeratorStatusResponseDTO>
     {

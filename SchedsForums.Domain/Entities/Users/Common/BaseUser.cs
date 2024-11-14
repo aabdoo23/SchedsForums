@@ -10,5 +10,6 @@ namespace SchedsForums.Domain.Entities.Users.Common
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public virtual ICollection<BaseForum> SubscribedForums { get; set; }
+        public string UserType { get; set; }
     }
 }
