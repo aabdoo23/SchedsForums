@@ -1,11 +1,8 @@
-﻿using MediatR;
+﻿using SchedsForums.Application.Commands.Forums.Common;
 
 namespace SchedsForums.Application.Commands.Forums.GeneralForums.Create
 {
-    public class CreateGeneralForumCommand : IRequest<CreateGeneralForumCommandResponseDTO>
+    public class CreateGeneralForumCommand : CreateForumBaseCommand<CreateGeneralForumCommandResponseDTO>
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public virtual IEnumerable<string> Guidelines { get; set; }
     }
 }
