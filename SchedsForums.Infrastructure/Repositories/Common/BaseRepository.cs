@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchedsForums.Application.Interfaces.Common;
+using SchedsForums.Application.Queries.Common.DTOs;
 using SchedsForums.Domain.Entities.Common;
 using SchedsForums.Infrastructure.Contexts;
 
 namespace SchedsForums.Infrastructure.Repositories.Common
 {
-    public class BaseRepository<T>(SchedsForumsDbContext context) : IBaseRepository<T> where T : BaseEntity
+    public class BaseRepository<T>(SchedsForumsDbContext context) : IBaseRepository<T> where T : AuditableEntity
     {
         private readonly SchedsForumsDbContext _context = context ?? throw new ArgumentNullException(nameof(context));
         private readonly DbSet<T> _dbSet = context.Set<T>();
@@ -44,18 +45,23 @@ namespace SchedsForums.Infrastructure.Repositories.Common
             return entity;
         }
 
-        public virtual async Task<int> GetTotalCount()
+        public virtual async Task<PaginatedEntityDTO<T>> GetPaginatedContentAsync(IQueryable<T> queryable, int pageNumber, int pageSize)
         {
-            return await _dbSet.CountAsync();
-        }
+            var totalCount = await queryable.CountAsync();
 
-        public virtual async Task<IEnumerable<T>> GetFromTo(int pageNumber, int pageSize)
-        {
-            return await _dbSet
-                .OrderBy(x => x.Id)
+            var data = await queryable
+                .OrderBy(e => e.CreatedAt)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            return new PaginatedEntityDTO<T>
+            {
+                Data = data,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+            };
         }
     }
 }

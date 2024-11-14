@@ -1,6 +1,8 @@
-﻿namespace SchedsForums.Application.Commands.Common.User
+﻿using SchedsForums.Application.Interfaces.Common.DTOs;
+
+namespace SchedsForums.Application.Commands.Common
 {
-    public class UserResponseDTO : BaseResponseDTO
+    public class UserResponseDTO : BaseIdResponseDTO
     {
         public string FullName { get; set; }
         public string UserName { get; set; }

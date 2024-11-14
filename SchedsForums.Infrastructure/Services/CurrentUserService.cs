@@ -12,8 +12,7 @@ namespace SchedsForums.Infrastructure.Services
         public Guid GetUserId()
         {
             var userId = GetClaimValue(ClaimTypes.NameIdentifier);
-            var guid = Guid.Parse(userId);
-            return guid;
+            return Guid.Parse(userId);
         }
 
         public string GetUsername()
@@ -26,11 +25,6 @@ namespace SchedsForums.Infrastructure.Services
         {
             return GetClaimValue(ClaimTypes.Role)
                 ?? throw new InvalidOperationException("User role claim not found");
-        }
-
-        public bool IsAuthenticated()
-        {
-            return _httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
         }
 
         private string? GetClaimValue(string claimType)

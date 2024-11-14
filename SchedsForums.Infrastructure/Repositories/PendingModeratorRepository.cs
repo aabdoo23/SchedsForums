@@ -1,37 +1,56 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
+using SchedsForums.Application.Interfaces.Services;
+using SchedsForums.Application.Queries.Common.DTOs;
+using SchedsForums.Application.Queries.PendingModerators.DTOs;
 using SchedsForums.Domain.Entities.Users;
 using SchedsForums.Infrastructure.Contexts;
 using SchedsForums.Infrastructure.Repositories.Common;
 
 namespace SchedsForums.Infrastructure.Repositories
 {
-    public class PendingModeratorRepository(SchedsForumsDbContext context) : BaseRepository<PendingModerator>(context), IPendingModeratorRepository
+    public class PendingModeratorRepository(
+            ICurrentUserService currentUserService,
+            IBaseRepository<Admin> adminRepository,
+            SchedsForumsDbContext context) 
+        : BaseRepository<PendingModerator>(context), IPendingModeratorRepository
     {
-        private readonly SchedsForumsDbContext _context = context 
+        private readonly ICurrentUserService _currentUserService = currentUserService
+            ?? throw new ArgumentNullException(nameof(ICurrentUserService));
+        private readonly SchedsForumsDbContext _context = context
             ?? throw new ArgumentNullException(nameof(SchedsForumsDbContext));
-        public override async Task<IEnumerable<PendingModerator>> GetFromTo(int pageNumber, int pageSize)
-        {
-            return await _context.PendingModerators
-                .Where(pm => !(pm is Moderator))
-                .OrderBy(x => x.Id)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-        }
+        private readonly IBaseRepository<Admin> _adminRepository = adminRepository
+            ?? throw new ArgumentNullException(nameof(IBaseRepository<Admin>));
 
-        public override async Task<int> GetTotalCount()
+        public async Task<PaginatedResponseDTO<BasePendingModeratorResponseDTO>> GetPaginatedPendingModeratorsAsync(int pageNumber, int pageSize)
         {
-            return await _context.PendingModerators
-                .Where(pm => !(pm is Moderator))
-                .CountAsync();
-        }
+            var queryable = _context.PendingModerators
+                .Where(pm => !(pm is Moderator));
 
-        public override async Task<IEnumerable<PendingModerator>> GetAllAsync()
+            var entityResponse = await base.GetPaginatedContentAsync(queryable, pageNumber, pageSize);
+            return new PaginatedResponseDTO<BasePendingModeratorResponseDTO>
+            {
+                Data = entityResponse.Data.Select(pm => new BasePendingModeratorResponseDTO(pm)).ToList(),
+                TotalCount = entityResponse.TotalCount,
+                PageNumber = entityResponse.PageNumber,
+                PageSize = entityResponse.PageSize
+            };
+        }
+        public async Task PromoteToModeratorAsync(Guid pendingModeratorId)
         {
-            return await _context.PendingModerators
-                .Where(pm => !(pm is Moderator))
-                .ToListAsync();
+            var pendingModerator = await GetByIdAsync(pendingModeratorId)
+                ?? throw new KeyNotFoundException(pendingModeratorId.ToString());
+
+            var adminId = _currentUserService.GetUserId();
+            var admin = await _adminRepository.GetByIdAsync(adminId);
+
+            pendingModerator.Status = ModeratorStatus.Approved;
+            pendingModerator.StatusUpdatedAt = DateTime.UtcNow;
+            pendingModerator.StatusUpdatedBy = admin;
+
+            _context.Entry(pendingModerator).Property("UserType").CurrentValue = nameof(Moderator);
+
+            await UpdateAsync(pendingModerator);
         }
     }
 }
