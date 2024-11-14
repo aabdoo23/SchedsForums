@@ -40,6 +40,8 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IPendingModeratorRepository, PendingModeratorRepository>();
             services.AddScoped<IBaseUserRepository, BaseUserRepository>();
             services.AddScoped<IBaseRepository<Course>, BaseRepository<Course>>();
+            services.AddScoped<IBaseRepository<Major>, BaseRepository<Major>>();
+            services.AddScoped<IBaseRepository<Faculty>, BaseRepository<Faculty>>();
 
             return services;
         }

@@ -12,6 +12,8 @@ namespace SchedsForums.Infrastructure.Contexts
         public DbSet<Moderator> Moderators { get; set; }
         public DbSet<PendingModerator> PendingModerators { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Major> Majors { get; set; }
+        public DbSet<Faculty> Faculties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
