@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SchedsForums.Application.Interfaces.Repositories;
 
-namespace SchedsForums.Application.Queries.Admins.GetPendingModerators
+namespace SchedsForums.Application.Queries.PendingModerators.GetPendingModerators
 {
     public class GetPendingModeratorsQueryHandler(
         IPendingModeratorRepository repository)
@@ -14,16 +14,16 @@ namespace SchedsForums.Application.Queries.Admins.GetPendingModerators
             GetPendingModeratorsQuery request,
             CancellationToken cancellationToken)
         {
-            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetFromTo(request.PageNumber, request.PageSize);
-            var totalCount = await _pendingModeratorsRepository.GetTotalCount();
+            var pendingModeratorsQueryResult = await _pendingModeratorsRepository.GetPaginatedPendingModeratorsAsync(
+                request.PageNumber,
+                request.PageSize);
 
             return new GetPendingModeratorsQueryResponseDTO
             {
-                PendingModerators = pendingModeratorsQueryResult,
-                ReturnedCount = pendingModeratorsQueryResult.Count(),
-                TotalCount = totalCount,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize,
+                Data = pendingModeratorsQueryResult.Data,
+                TotalCount = pendingModeratorsQueryResult.TotalCount,
+                PageNumber = pendingModeratorsQueryResult.PageNumber,
+                PageSize = pendingModeratorsQueryResult.PageSize
             };
         }
     }

@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchedsForums.Application.Commands.Admins.Create;
-using SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus;
-using SchedsForums.Application.Queries.Admins.GetPendingModerators;
 using SchedsForums.Domain.Entities.Users;
 
 namespace SchedsForums.Api.Controllers
@@ -17,20 +15,6 @@ namespace SchedsForums.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateAdminAsync([FromBody] CreateAdminCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return Ok(result);
-        }
-
-        [HttpGet("PendingModerators")]
-        public async Task<IActionResult> GetModeratorSignUpRequestsAsync([FromBody] GetPendingModeratorsQuery query)
-        {
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        [HttpPost("ModifyPendingModeratorStatus")]
-        public async Task<IActionResult> ModifyPendingModeratorStatusAsync([FromBody] ModifyPendingModeratorStatusCommand command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

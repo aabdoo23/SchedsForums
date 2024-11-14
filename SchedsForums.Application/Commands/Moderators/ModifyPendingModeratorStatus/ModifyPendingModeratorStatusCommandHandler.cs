@@ -4,13 +4,13 @@ using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
 
-namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
+namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorStatus
 {
     public class ModifyPendingModeratorStatusCommandHandler(
         ICurrentUserService currentUserService,
         IPendingModeratorRepository pendingModeratorRepository,
         IBaseRepository<Moderator> moderatorRepository,
-        IBaseRepository<Admin> adminRepository) : 
+        IBaseRepository<Admin> adminRepository) :
         IRequestHandler<ModifyPendingModeratorStatusCommand, ModifyPendingModeratorStatusResponseDTO>
     {
         private readonly ICurrentUserService _currentUserService = currentUserService
@@ -23,13 +23,13 @@ namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
             ?? throw new ArgumentNullException(nameof(adminRepository));
 
         public async Task<ModifyPendingModeratorStatusResponseDTO> Handle(
-            ModifyPendingModeratorStatusCommand request, 
+            ModifyPendingModeratorStatusCommand request,
             CancellationToken cancellationToken)
         {
             var adminId = _currentUserService.GetUserId();
             var admin = await _adminRepository.GetByIdAsync(adminId);
             var pendingModerator = await _pendingModeratorRepository.GetByIdAsync(request.ModeratorId)
-                ?? throw new KeyNotFoundException(nameof(request.ModeratorId));
+                ?? throw new KeyNotFoundException(nameof(request.ModeratorId)); // instead of calling it in the validator
 
             pendingModerator.Status = request.Status;
             pendingModerator.StatusUpdatedAt = DateTime.UtcNow;
@@ -47,10 +47,14 @@ namespace SchedsForums.Application.Commands.Admins.ModifyPendingModeratorStatus
                     CreatedAt = pendingModerator.CreatedAt,
                     StatusUpdatedAt = DateTime.UtcNow,
                     StatusUpdatedBy = admin,
-                    Reason = pendingModerator.Reason   
+                    Reason = pendingModerator.Reason
                 };
                 await _moderatorRepository.InsertAsync(moderator);
                 await _pendingModeratorRepository.DeleteAsync(pendingModerator.Id);
+
+                //await _pendingModeratorRepository.PromoteToModeratorAsync(pendingModerator.Id);
+                //uncomment if .Property<string>("UserType").Metadata.IsReadOnlyAfterSave = false; is configured and migration is applied
+
             }
             else
             {
