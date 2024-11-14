@@ -62,7 +62,7 @@ namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorSta
             }
             return new ModifyPendingModeratorStatusResponseDTO
             {
-                ModeratorId = pendingModerator.Id.ToString(),
+                Id = pendingModerator.Id,
                 IsSuccess = true,
                 Status = pendingModerator.Status
             };

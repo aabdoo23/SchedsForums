@@ -1,4 +1,4 @@
-﻿using SchedsForums.Application.Commands.Common;
+﻿using SchedsForums.Application.Commands.Common.User;
 
 namespace SchedsForums.Application.Commands.Moderators.SignUp
 {

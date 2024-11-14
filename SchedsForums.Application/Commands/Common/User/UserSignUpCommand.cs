@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SchedsForums.Application.Commands.Common
+namespace SchedsForums.Application.Commands.Common.User
 {
     public abstract class UserSignUpCommand<TResponse> : IRequest<TResponse>
     {

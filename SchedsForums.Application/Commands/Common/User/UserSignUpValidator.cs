@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SchedsForums.Application.Commands.Common
+namespace SchedsForums.Application.Commands.Common.User
 {
     public abstract class UserSignUpValidator<TCommand, TResponse> : AbstractValidator<TCommand>
             where TCommand : UserSignUpCommand<TResponse>
