@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SchedsForums.Application.Interfaces;
 using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
@@ -47,7 +46,9 @@ namespace SchedsForums.Infrastructure
         {
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IJWTService, JWTService>();
-            
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+
             return services;
         }
 
