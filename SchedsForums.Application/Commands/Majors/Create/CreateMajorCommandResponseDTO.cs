@@ -1,8 +1,8 @@
-﻿using SchedsForums.Application.Commands.Common;
+﻿using SchedsForums.Application.Interfaces.Common.DTOs;
 
 namespace SchedsForums.Application.Commands.Majors.Create
 {
-    public class CreateMajorCommandResponseDTO : BaseResponseDTO
+    public class CreateMajorCommandResponseDTO : BaseIdResponseDTO
     {
         public string MajorCode { get; set; }
         public string MajorName { get; set; }

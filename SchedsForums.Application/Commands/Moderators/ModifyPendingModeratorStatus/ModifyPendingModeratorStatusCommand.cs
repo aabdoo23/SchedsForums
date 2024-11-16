@@ -6,6 +6,6 @@ namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorSta
     public class ModifyPendingModeratorStatusCommand : IRequest<ModifyPendingModeratorStatusResponseDTO>
     {
         public Guid ModeratorId { get; set; }
-        public ModeratorStatus Status { get; set; }
+        public RequestStatus Status { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Domain.Entities.Users.Common;
 using SchedsForums.Infrastructure.Contexts;
 
 namespace SchedsForums.Infrastructure.Services
@@ -27,7 +28,7 @@ namespace SchedsForums.Infrastructure.Services
             var adminId = _currentUserService.GetUserId();
             var admin = await _adminRepository.GetByIdAsync(adminId);
 
-            pendingModerator.Status = ModeratorStatus.Approved;
+            pendingModerator.Status = RequestStatus.Approved;
             pendingModerator.StatusUpdatedAt = DateTime.UtcNow;
             pendingModerator.StatusUpdatedBy = admin;
 

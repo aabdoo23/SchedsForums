@@ -25,6 +25,7 @@ namespace SchedsForums.Infrastructure.Contexts
         public DbSet<MajorForum> MajorForums { get; set; }
         public DbSet<FacultyForum> FacultyForums { get; set; }
 
+        public DbSet<ForumRequest> ForumRequests { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SchedsForumsDbContext).Assembly);

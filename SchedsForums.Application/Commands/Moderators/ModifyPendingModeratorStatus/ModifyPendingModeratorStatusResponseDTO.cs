@@ -1,11 +1,11 @@
-﻿using SchedsForums.Application.Commands.Common;
+﻿using SchedsForums.Application.Interfaces.Common.DTOs;
 using SchedsForums.Domain.Entities.Users.Common;
 
 namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorStatus
 {
-    public class ModifyPendingModeratorStatusResponseDTO : BaseResponseDTO
+    public class ModifyPendingModeratorStatusResponseDTO : BaseIdResponseDTO
     {
-        public ModeratorStatus Status { get; set; }
+        public RequestStatus Status { get; set; }
         public bool IsSuccess { get; set; }
     }
 }

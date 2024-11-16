@@ -47,6 +47,7 @@ namespace SchedsForums.Infrastructure
             services.AddScoped<IBaseRepository<CourseForum>, BaseRepository<CourseForum>>();
             services.AddScoped<IBaseRepository<MajorForum>, BaseRepository<MajorForum>>();
             services.AddScoped<IBaseRepository<FacultyForum>, BaseRepository<FacultyForum>>();
+            services.AddScoped<IBaseRepository<ForumRequest>, BaseRepository<ForumRequest>>();
 
             return services;
         }

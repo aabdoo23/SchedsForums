@@ -1,8 +1,8 @@
-﻿using SchedsForums.Application.Commands.Common;
+﻿using SchedsForums.Application.Interfaces.Common.DTOs;
 
 namespace SchedsForums.Application.Commands.Forums.Common
 {
-    public abstract class CreateForumBaseResponseDTO : BaseResponseDTO
+    public abstract class CreateForumBaseResponseDTO : BaseIdResponseDTO
     {
         public string Title { get; set; }
         public string Description { get; set; }

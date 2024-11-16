@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SchedsForums.Application.Commands.ForumRequests.Create;
 using SchedsForums.Application.Commands.Forums.CourseForums.Create;
 using SchedsForums.Application.Commands.Forums.FacultyForums.Create;
 using SchedsForums.Application.Commands.Forums.GeneralForums.Create;
@@ -43,6 +44,14 @@ namespace SchedsForums.Api.Controllers
         [Authorize(Roles = nameof(Admin))]
         [HttpPost]
         public async Task<IActionResult> CreateFacultyForum([FromBody] CreateFacultyForumCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [Authorize(Roles = nameof(Student))]
+        [HttpPost]
+        public async Task<IActionResult> CreateForumRequest([FromBody] CreateForumRequestCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

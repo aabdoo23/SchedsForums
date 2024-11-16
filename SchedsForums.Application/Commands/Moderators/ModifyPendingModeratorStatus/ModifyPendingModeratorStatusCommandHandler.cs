@@ -36,7 +36,7 @@ namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorSta
             pendingModerator.StatusUpdatedAt = DateTime.UtcNow;
             pendingModerator.StatusUpdatedBy = admin;
 
-            if (request.Status == ModeratorStatus.Approved)
+            if (request.Status == RequestStatus.Approved)
             {
                 var moderator = new Moderator
                 {
@@ -44,7 +44,7 @@ namespace SchedsForums.Application.Commands.Moderators.ModifyPendingModeratorSta
                     Username = pendingModerator.Username,
                     Email = pendingModerator.Email,
                     PasswordHash = pendingModerator.PasswordHash,
-                    Status = ModeratorStatus.Approved,
+                    Status = RequestStatus.Approved,
                     CreatedAt = pendingModerator.CreatedAt,
                     StatusUpdatedAt = DateTime.UtcNow,
                     StatusUpdatedBy = admin,

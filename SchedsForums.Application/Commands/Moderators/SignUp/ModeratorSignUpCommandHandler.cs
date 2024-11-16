@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SchedsForums.Application.Interfaces.Common;
 using SchedsForums.Application.Interfaces.Repositories;
 using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Domain.Entities.Users;
@@ -14,7 +13,7 @@ namespace SchedsForums.Application.Commands.Moderators.SignUp
     {
         private readonly IPendingModeratorRepository _moderatorSignUpRequestRepository = moderatorSignUpRequestRepository
             ?? throw new ArgumentNullException(nameof(moderatorSignUpRequestRepository));
-        private readonly IPasswordService _passwordService = passwordService 
+        private readonly IPasswordService _passwordService = passwordService
             ?? throw new ArgumentNullException(nameof(passwordService));
 
         public async Task<ModeratorSignUpResponseDTO> Handle(ModeratorSignUpCommand command, CancellationToken cancellationToken)
@@ -28,7 +27,7 @@ namespace SchedsForums.Application.Commands.Moderators.SignUp
                 Email = command.Email,
                 PasswordHash = hashedPassword,
                 Reason = command.Reason,
-                Status = ModeratorStatus.Pending,
+                Status = RequestStatus.Pending,
             };
 
             await _moderatorSignUpRequestRepository.InsertAsync(pendingModerator);

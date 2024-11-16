@@ -1,6 +1,6 @@
 ﻿namespace SchedsForums.Domain.Entities.Users.Common
 {
-    public enum ModeratorStatus
+    public enum RequestStatus
     {
         Pending,
         Approved,

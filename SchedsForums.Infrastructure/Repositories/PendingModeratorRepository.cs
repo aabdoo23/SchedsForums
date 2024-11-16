@@ -4,6 +4,7 @@ using SchedsForums.Application.Interfaces.Services;
 using SchedsForums.Application.Queries.Common.DTOs;
 using SchedsForums.Application.Queries.PendingModerators.DTOs;
 using SchedsForums.Domain.Entities.Users;
+using SchedsForums.Domain.Entities.Users.Common;
 using SchedsForums.Infrastructure.Contexts;
 using SchedsForums.Infrastructure.Repositories.Common;
 
@@ -44,7 +45,7 @@ namespace SchedsForums.Infrastructure.Repositories
             var adminId = _currentUserService.GetUserId();
             var admin = await _adminRepository.GetByIdAsync(adminId);
 
-            pendingModerator.Status = ModeratorStatus.Approved;
+            pendingModerator.Status = RequestStatus.Approved;
             pendingModerator.StatusUpdatedAt = DateTime.UtcNow;
             pendingModerator.StatusUpdatedBy = admin;
 

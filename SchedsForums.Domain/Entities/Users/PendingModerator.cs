@@ -7,6 +7,6 @@ namespace SchedsForums.Domain.Entities.Users
         public string Reason { get; set; }
         public DateTime? StatusUpdatedAt { get; set; }
         public virtual Admin? StatusUpdatedBy { get; set; }
-        public ModeratorStatus Status { get; set; }
+        public RequestStatus Status { get; set; }
     }
 }
